@@ -19,7 +19,7 @@
 > pkg install nodejs
 > pkg install ffmpeg
 > pkg install mc
-> git clone https://github.com/ItsMeArip/self
+> git clone https://github.com/ItsMeArip/rip
 > npm install
 > npm start
 
@@ -43,7 +43,7 @@ Scan code QR nya ke WhatsApp web
   
 > [FERDIZ-afk](https://github.com/FERDIZ-afk)
 
-> [FatihArridho](https://github.com)
+> [FatihArridho](https://github.com/FatihArridho)
 
 > [Choky](https://github.com/ChokyBitch)
 
