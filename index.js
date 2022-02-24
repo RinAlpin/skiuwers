@@ -450,13 +450,13 @@ banned: '```YOU HAVE BEEN IN BANNED```',
 }
 
 const vcard = 'BEGIN:VCARD\n'
-            + 'VERSION:3.0\n'
-            + 'FN:Arip͘⁴̅⁰͍⁴̵〆︎\n'
-            + 'ORG:Owner;\n'
-            + 'TEL;type=CELL;type=VOICE;waid=6287776101997:+62 8777-6101-997\n'
-            + 'EMAIL;type=INTERNET:ItsMeArip@gmail.com\n'
-            + 'URL:https://youtube.com/c/ItsMeArip\n'
-            + 'END:VCARD'
++ 'VERSION:3.0\n'
++ 'FN:Arip͘⁴̅⁰͍⁴̵〆︎\n'
++ 'ORG:Owner;\n'
++ 'TEL;type=CELL;type=VOICE;waid=6287776101997:+62 8777-6101-997\n'
++ 'EMAIL;type=INTERNET:ItsMeArip@gmail.com\n'
++ 'URL:https://youtube.com/c/ItsMeArip\n'
++ 'END:VCARD'
 
 const isUrl = (url) => {
 return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%.+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%+.~#?&/=]*)/, 'gi'))
@@ -1229,11 +1229,6 @@ const isVideo = type === 'videoMessage'
 
 //====================================================//
 
-//if (!isGroup && isCmd) {console.log(color('[ PRIVATE ]'), color(moment(rip.messageTimestamp * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`, 'red'))}
-//if (!isGroup && isCmd) console.log(color('[ PRIVATE ]', 'green'), color(`${command} [${args.length}]`, 'red'), color('from', 'green'), color(time, 'red'), color('Name:', 'green'), color(pushname, 'yellow'), color('Number:', 'red'), color(sender.split('@')[0], 'green')) 
-//if (isCmd && isGroup) {console.log(color('[ GROUP ]'), color(moment(rip.messageTimestamp * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`, 'red'), color('from', 'green'), color(`${pushname}`, 'yellow'), color('in', 'green'), color(`${groupName}`, 'red'))}
-//if (isCmd && isGroup) console.log(color('[ GROUP ]', 'green'), color(`${command} [${args.length}]`, 'red'), color('from', 'green'), color(time, 'red'), color('Name:', 'green'), color(pushname, 'yellow'), color('in', 'red'), color(`${groupName}`, 'green'), color('Number:', 'yellow'), color(sender.split('@')[0], 'red'))
-
 if (!isGroup && isCmd) console.log(color(`================================================`, 'red'))
 if (!isGroup && isCmd) console.log(color('[ TEXT ]', 'red'), color('[ EXECUTION ]','yellow'), color('[ PRIVATE ]','green'))
 if (!isGroup && isCmd) console.log(color(`================================================`, 'yellow'))
@@ -1262,7 +1257,7 @@ case prefix+ 'menu':
 case prefix+ 'help':
 if (isBanned) return reply(mess.only.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
-//if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
+if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 const premm = `${isOwner ? 'Owner' : isPremium ? 'Premium' : 'Free'}`
 let cekvipp = ms(_prem.getPremiumExpired(sender, premium) - Date.now())
 const premi = isPremium ? `${cekvipp.days} day ${cekvipp.hours} hour ${cekvipp.minutes} minute ${cekvipp.seconds} second`:'Not Premium'
@@ -1541,12 +1536,6 @@ if (menusimple == false) pi = skiuwers.prepareMessageFromContent(from, {
 skiuwers.relayWAMessage(pi, {waitForAck: true})
 break
 
-case prefix+'xyz':
-xyz = 'https://i.ibb.co/kynNYTh/fake.jpg'
-teks = `TESTIMONI`
-skiuwers.sendMessage(from, await getBuffer(xyz), image, {quoted: ftoko, caption: teks })
-break
-
 case prefix+'ownermenu':
 if (isBanned) return reply(mess.only.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
@@ -1801,8 +1790,6 @@ teks =`
 ├─⊙ ${prefix}brainly <query>
 ├─⊙ ${prefix}wikipedia <query>
 ├─⊙ ${prefix}google <query>
-├─⊙ ${prefix}news <query>
-├─⊙ ${prefix}beasiswa <query>
 ├─⊙ ${prefix}anime <query>
 ├─⊙ ${prefix}otaku <query>
 ├─⊙ ${prefix}komiku <query>
@@ -1887,14 +1874,14 @@ const teks = child.replace(/Memory:/, "Ram:")
 const pingnya = `*${teks}Speed: ${latensi.toFixed(4)} Second*`
 })
 teks = `
-⊙─❲ MODE BOT ❳
+⊙─❲ DEVICE BOT ❳
 │
-├─⊙ Baterai : ${isBattre} 
-├─⊙ Charger : ${isCharge === 'true' ? 'Yes' : 'No'}  
-├─⊙ Status  : ${offline ? 'Offline' : 'Online'} 
-├─⊙ Mode  : ${banChats ? 'Self-Mode' : 'Public-Mode'} 
-├─⊙ Speed : ${latensi.toFixed(4)} Second 
-└─⊙ Runtime : ${kyun(skitime)} 
+├⊙ Baterai : ${isBattre} 
+├⊙ Charger : ${isCharge === 'true' ? 'Yes' : 'No'}  
+├⊙ Status  : ${offline ? 'Offline' : 'Online'} 
+├⊙ Mode  : ${banChats ? 'Self-Mode' : 'Public-Mode'} 
+├⊙ Speed : ${latensi.toFixed(4)} Second 
+└⊙ Runtime : ${kyun(skitime)} 
 `
 buttonss =
 [
@@ -1932,11 +1919,12 @@ if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
 if (!isOwner && !isCreator && !rip.key.fromMe && !isGroupAdmins) return reply(mess.only.admin)
-teks = `[ ⚙️ ] SET GROUP
-
-[•] Link group | Menampilkan link group
-[•] Reset link | Mereset ulang link group
-[•] Info group | Menampilkan deskripsi group
+teks = `
+⊙─❲ SET GROUP ❳
+│
+├⊙ Link group | Menampilkan link group
+├⊙ Reset link | Mereset ulang link group
+└⊙ Info group | Menampilkan deskripsi group
 `
 buttonss =
 [
@@ -1954,10 +1942,11 @@ if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
 if (!isOwner && !isCreator && !rip.key.fromMe && !isGroupAdmins) return reply(mess.only.admin)
-teks = `[ ⚙️ ] MODE GROUP
-
-[•] Open | Untuk membuka group
-[•] Close | Untuk menutup group
+teks = `
+⊙─❲ MODE GROUP ❳
+│
+├⊙ Open | Untuk membuka group
+└⊙ Close | Untuk menutup group
 `
 buttonss =
 [
@@ -2042,7 +2031,7 @@ teks = `
 ├⊙ Merk Hp : ${device_manufacturer}
 └⊙ Versi Hp : ${device_model}
 
-⊙─❲ DEVICE BOT ❳
+⊙─❲ MODE BOT ❳
 │
 ├⊙ [ ${antitags ? 'True' : 'False'} ] Anti Tag
 ├⊙ [ ${autobio ? 'True' : 'False'} ] Auto Bio
@@ -2176,7 +2165,7 @@ sendEphemeral: false,
 "title": `X-M4rh03 (@ItsMeArip) `,
 "body": `Github profile and repositories`,
 "previewType": "PHOTO",
-"thumbnailUrl": "https://telegra.ph/file/bbb5eca08130920edbcb4.jpg",
+"thumbnailUrl": "https://telegra.ph/file/349e5fe040a66f5b51787.jpg/fake.jpg",
 "thumbnail": fs.readFileSync(`image/fake.jpg`),
 "sourceUrl": `https://github.com/ItsMeArip`
 },mentionedJid:[sender]}, quoted : ftroli})
@@ -3388,7 +3377,7 @@ const trut = ['Pernah suka sama siapa aja? berapa lama?', 'Kalau boleh atau kala
 
 const ttrth = trut[Math.floor(Math.random() * trut.length)]
 
-logotruth = await getBuffer('https://telegra.ph/file/f69b58216b0c109107952.jpg')
+logotruth = await getBuffer('https://telegra.ph/file/f69b58216b0c109107952.jpg/tod.jpg')
 
 sendButLoc(from,  `[${pushname}] \n\n${ttrth}`, `© All Creator BotWea | ${ownername}`, logotruth,  [
 
@@ -3432,7 +3421,7 @@ const dare = ['Kirim pesan ke mantan kamu dan bilang "aku masih suka sama kamu',
 
 const der = dare[Math.floor(Math.random() * dare.length)]
 
-logodare = await getBuffer('https://telegra.ph/file/407800b89e1b077c3aae9.jpg')
+logodare = await getBuffer('https://telegra.ph/file/407800b89e1b077c3aae9.jpg/tod.jpg')
 
 sendButLoc(from,  `[${pushname}] \n\n${der}`, `© All Creator BotWea | ${ownername}`, logodare,  [
 
@@ -3777,7 +3766,6 @@ sendFile(dl_link, audio, {mimetype: 'audio/mp4',quoted:rip})
 })
 .catch((err) => reply(`${err}`))
 } catch (err) {
-limitAdd(sender, limit)
 }
 limitAdd(sender, limit)
 break
@@ -3801,7 +3789,6 @@ sendFile(dl_link, video, {mimetype: 'video/mp4',quoted:rip})
 })
 .catch((err) => reply(`${err}`))
 } catch (err) {
-limitAdd(sender, limit)
 }
 limitAdd(sender, limit)
 break
@@ -3979,9 +3966,6 @@ sendMediaURL(from,data.medias[0].url)
 }
 limitAdd(sender, limit)
 break
-
-//sendFileFromUrl(res[0].link, document, {quoted: rip, mimetype: 'audio/mp3', filename:'audio.mp3'})
-//skiuwers.sendMessage(from, buffer453, audio, { mimetype: 'audio/mp4', quoted: rip })
 
 case prefix+'mediafire':
 if (isBanned) return reply(mess.only.banned)
@@ -4631,8 +4615,9 @@ break
 case prefix+'shortlink':{
 if (!isUrl(q)) return reply(`Kirim perintah ${prefix + command} *https://link*`)
 anu = await fetchJson(`https://shortlink.fatiharridho.my.id/api/?key=nezc1QupZyUP&url=${q}`)
-let txt = `*_🐨 URL Ori_* : ${q}
-*_🐼 Shortlink_* : ${anu.short}`
+let txt = `
+⊙ *URL Ori* : ${q}
+⊙ *Shortlink* : ${anu.short} \n`
 reply(txt)
 }
 break
@@ -5384,72 +5369,6 @@ break
 //=========================================================\\
 //=========================================================\\
 
-case prefix+ 'beasiswa':
-if (isBanned) return reply(mess.only.banned)
-if (!rip.key.fromMe && !isRegistered) return verify(altar)
-if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
-data = fs.readFileSync('./lib/beasiswa.js');
-jsonData = JSON.parse(data);
-randIndex = Math.floor(Math.random() * jsonData.length);
-randKey = jsonData[randIndex];
-randIndex2 = Math.floor(Math.random() * jsonData.length);
-randKey2 = jsonData[randIndex2];
-randIndex3 = Math.floor(Math.random() * jsonData.length);
-randKey3 = jsonData[randIndex3];
-let ok = await skiuwers.prepareMessageFromContent(from, {
-"buttonsMessage": {
-"contentText": `*INFORMASI BEASISWA*`,
-"description": `.`,
-"footerText": `${randKey.title}\n${randKey.link}\n\n${randKey2.title}\n${randKey2.link}\n\n${randKey3.title}\n${randKey3.link}`,
-"buttons": [
-{buttonId: 'CARI LAGI', buttonText: {displayText: 'CARI LAGI'}, type: 1}
-],
-headerType: 1
-},
-}, {quoted: rip}) 
-await skiuwers.relayWAMessage(ok)
-limitAdd(sender, limit)
-break
-
-case prefix+'news':
-if (isBanned) return reply(mess.only.banned)
-if (!rip.key.fromMe && !isRegistered) return verify(altar)
-if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
-data = fs.readFileSync('./lib/berita.js');
-jsonData = JSON.parse(data);
-randIndex = Math.floor(Math.random() * jsonData.length);
-randKey = jsonData[randIndex];
-oo = await skiuwers.prepareMessageFromContent(from, {
-"buttonsMessage": {
-"contentText": `*TITLE*: ${randKey.result.title}\n\n*AUTHOR*: ${randKey.result.author}\n\n*PUBLIS*: ${randKey.result.publishedAt}\n\n*CONTENT*: ${randKey.result.content}\n\n*DESKRIPSI*: ${randKey.result.description}\n\n*LINK*: ${randKey.result.url}`,
-"description": `.`,
-"footerText": "BREAKING NEWS",
-"buttons": [
-{buttonId: 'NEWS', buttonText: {displayText: 'NEWS'}, type: 1}
-],
-headerType: 1
-},
-}, {quoted: rip}) 
-await skiuwers.relayWAMessage(oo)
-limitAdd(sender, limit)
-break
-/*
-case prefix+ 'film':
-data = fs.readFileSync('./lib/film.js');
-jsonData = JSON.parse(data);
-randIndex = Math.floor(Math.random() * jsonData.length);
-randKey = jsonData[randIndex];
-fs.writeFileSync(`./${sender}.jpeg`, await getBuffer(randKey.result.thumbnail))
-buttons = [{buttonId:`SEARCHING`,buttonText:{displayText:`SEARCHING`},type:1}]
-imageMsg = ( await skiuwers.prepareMessage(from, fs.readFileSync(`./${sender}.jpeg`), 'imageMessage', {thumbnail: Buffer.alloc(0)})).message.imageMessage
-buttonsMessage = {footerText:'RANDOM - FILM', imageMessage: imageMsg,
-contentText:`*Title*: ${randKey.result.title}\n\n*Desc*: ${randKey.result.desc}\n\n*Views*: ${randKey.result.views}\n\n*Duration*: ${randKey.result.duration}\n\n*Genre*: ${randKey.result.genre}\n\n*Tahun*: ${randKey.result.tahun}\n\n*Ratting*: ${randKey.result.rating}\n\n*Link*: ${randKey.result.link}\n\n*Actors*: ${randKey.result.actors}\n\n*Location*: ${randKey.result.location}\n\n*Release*: ${randKey.result.date_release}\n\n*Language*: ${randKey.result.language}\n\n*Link Download*: ${randKey.result.link_dl}`,buttons,headerType:4}
-prep = await skiuwers.prepareMessageFromContent(from,{buttonsMessage},{quoted: rip})
-skiuwers.relayWAMessage(prep)
-fs.unlinkSync(`./${sender}.jpeg`)
-limitAdd(sender, limit)
-break
-*/
 case prefix+'otaku':
 if (isBanned) return reply(mess.only.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
@@ -5573,7 +5492,7 @@ if (args.length == 0) return reply(`Penggunaan : ${prefix}google  Apa itu google
 query = args.join(" ")
 get_result = await fetchJson(`https://api.lolhuman.xyz/api/gsearch?apikey=${lolkey}&query=${query}`)
 get_result = get_result.result
-ini_txt = '⊙ 「 GOOGLE 」\n\n'
+ini_txt = '「 GOOGLE 」\n\n'
 for (var x of get_result) {
 ini_txt += `⊙ Title : ${x.title}\n`
 ini_txt += `⊙ Link : ${x.link}\n`
@@ -5981,15 +5900,15 @@ if (!isPremium) return reply('```FALSE```')
 let cekvip = ms(_prem.getPremiumExpired(sender, premium) - Date.now())
 let premiumnya = `${cekvip.days} day(s) ${cekvip.hours} hour(s) ${cekvip.minutes} minute(s) ${cekvip.seconds} second(s)`
 try {
-ppimg = await skiuwers.getProfilePicture(`${sender.split('@')[0]}@c.us`)
+ppimg = await skiuwers.getProfilePicture(sender)
 } catch {
-ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+ppimg = 'https://telegra.ph/file/349e5fe040a66f5b51787.jpg/fake.jpg'
 }
 teks = `*── 「 PREMIUM USER 」──*  
   
- *Nama : ${pushname}*
- *Tag : @${sender.split("@")[0]}*
- *Expired : ${premiumnya}*`
+⊙ *Nama : ${pushname}*
+⊙ *Tag : @${sender.split("@")[0]}*
+⊙ *Expired : ${premiumnya}*`
 its = await getBuffer (ppimg)
 skiuwers.sendMessage(from, teks, text, {contextInfo: { forwardingScore: 9999, isForwarded: false, mentionedJid: [sender]},quoted: rip, caption: teks
 })
@@ -6274,29 +6193,16 @@ var has = kls.split("/")[0];
 if (args.length < 1) return reply(mess.wait)
 skiuwers.sendMessage(from, `${has}‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎` , text, { quoted: rip })
 break
-/*
-case prefix+ 'resetlimit':
-if (isBanned) return reply(mess.only.banned)
-if (!rip.key.fromMe && !isRegistered) return verify(altar)
-if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
-//var obj = ('[]')
-//fs.writeFileSync('./database/limit.json', JSON.stringify(obj, null, '\t'))
-skiuwers.updatePresence(from, Presence.avaible)
-fs.writeFileSync('./database/limit.json', JSON.stringify([]))
-console.log('Done')
-reply(`LIMIT BERHASIL DI RESET`)
-await sleep(5000)
-break
-*/
+
 case prefix+ 'resetlimit':{
 if (isBanned) return reply(mess.only.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 var reset2 = []
 _limit = reset2
-console.log('Hang tight, it\'s time to reset') 
+console.log('LIMIT BERHASIL DI RESET') 
 fs.writeFileSync('./database/limit.json', JSON.stringify([]))
-skiuwers.sendMessage(`${setting.ownerNumber}@s.whatsapp.net`, 'Sukses Reset Limit Ner', text)
+skiuwers.sendMessage(`${setting.ownerNumber}@s.whatsapp.net`, 'Sukses Reset Limit', text)
 }  
 await sleep(5000)
 break
@@ -6365,69 +6271,45 @@ bc = await skiuwers.downloadMediaMessage(encmedia)
 for (let _ of anu) {
 skiuwers.sendMessage(_.jid, `${ini_bc}`, text, { contextInfo: {"forwardingScore":999,"isForwarded":false},sendEphemeral: true, quoted: fkontak })
 }
-//skiuwers.sendMessage(_.jid, bc, {quoted: ftroli,caption: `*[ BROADCAST ]*\n\n${body.slice(4)}`})
 reply('```SUKSES BROADCAST```')
 }
 break
 
 case prefix+ 'bcprivate': 
-
 case prefix+ 'bcpersonal': 
-
 case prefix+ 'bcpc': 
 if (isBanned) return reply(mess.only.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('```TEXT?```')
 ini_bc = args.join(' ')
-
 var chatz = await skiuwers.chats.all().filter(v => v.jid.endsWith('s.whatsapp.net'))
-
 for (let _ of chatz) {
-
 skiuwers.sendMessage(_.jid, `${ini_bc}`, text, { contextInfo: {"forwardingScore":999,"isForwarded":false},sendEphemeral: true, quoted: fakebc })
-
 }
-
 reply(`SUKSES BROADCAST PERSONAL CHAT\n\nTotal : ${chatz.length} Chats`)
-
 break
 
 case prefix+ 'bcgroup': 
-
 case prefix+ 'bcgrup': 
-
 case prefix+ 'bcgc': 
 if (isBanned) return reply(mess.only.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('```TEXT?```')
 var group = await skiuwers.groupMetadata(from)
-
 var member = group['participants']
-
 var mem = []
-
 member.map(async adm => {
-
 mem.push(adm.id.replace('c.us', 's.whatsapp.net'))
-
 })
 ini_bc = args.join(' ')
-
 var groupz = await skiuwers.chats.all().filter(v => v.jid.endsWith('g.us'))
-
 let count = 0
-
 for (let _ of groupz) {
-
-//skiuwers.sendMessage(_.jid, `${ini_bc}`, text, { contextInfo: {"forwardingScore":999,"isForwarded":false},sendEphemeral: true, quoted: fakebc })
 skiuwers.sendMessage(_.jid, `${ini_bc}`, text,  {quoted:ftroli, contextInfo:{"externalAdReply":{"title": `${botname}`,"body": `SUBSCRIBE YOUTUBE CHANNEL`,"previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./image/fake.jpg`),"sourceUrl": `${setting.grub}`}}})
-
 }
-
 reply(`SUKSES BROADCAST GROUP\n\nTotal : ${groupz.length} Groups`)
-
 break
 
 case prefix+ 'bcaudio':
@@ -6608,7 +6490,7 @@ case prefix+ 'endgroup':{
 if (!isOwner && !rip.key.fromMe) return   
 let endgroup = skiuwers.chats.array.filter(u => u.jid.endsWith('@g.us')).map(u => u.jid)
 for (let id of endgroup) {
-sendMess(id, 'Hi', null)
+sendMess(id, 'Wassalam', null)
 await sleep(3000)
 skiuwers.groupLeave(id)
 }
@@ -6625,7 +6507,7 @@ skiuwers.groupLeave(from)
 setTimeout( () => {
 skiuwers.endGroup(from)
 }, 1000) // 1000 = 1s,
-reply('*Byee*')
+reply('Wassalam')
 }
 break
 
@@ -6682,16 +6564,7 @@ media = await skiuwers.downloadAndSaveMediaMessage(enmedia)
 await skiuwers.updateProfilePicture(botNumber, media)
 reply('```SUKSES```')
 break
-/*
-case prefix+ 'setmenu':
-if (isBanned) return reply(mess.only.banned)
-if (!rip.key.fromMe && !isRegistered) return verify(altar)
-if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
-if (!q) return reply(`*Penggunaan :* ${prefix}setreply faketoko\n\nList : \n • ftroli\n • ftoko\n • fkontak\n • fvideo\n • flocation\n • fdocument\n • fvoice\n • fsticker\n • finvite\n • fgif \n`)
-tetew = q
-reply(`Succes Mengganti Conversation Fake : ${tetew}`)
-break
-*/
+
 case prefix+ 'setreply':
 if (isBanned) return reply(mess.only.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
@@ -6821,7 +6694,6 @@ teks = `
 ├⊙ Serial : ${serialUser}
 └⊙ Verified : ${_registered.length}
 `
-//skiuwers.sendMessage(from, captnya, text, {quoted:fkontak, contextInfo:{"externalAdReply":{"title": `${ucapannya2} ✨`,"body": `${setting.fake}`,"previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./image/fake.jpg`),"sourceUrl": `${setting.fakereply}`}}})
 buttonss =
 [
 {buttonId: `${prefix}button`, buttonText: {displayText: 'MENU'}, type: 1},
@@ -6996,6 +6868,12 @@ if (rip.key.fromMe) return
 reply(`Ketik ${prefix}menu untuk mengakses >_<`)
 }
 if (messagesC.includes("assalamualaikum")) {
+if (rip.key.fromMe) return
+teks = `وَعَلَيْكُمْ السَّلاَمُ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ
+_wa'alaikumussalam wr.wb._`
+reply(teks)
+}
+if (messagesC.includes("assalamu'alaikum")) {
 if (rip.key.fromMe) return
 teks = `وَعَلَيْكُمْ السَّلاَمُ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ
 _wa'alaikumussalam wr.wb._`

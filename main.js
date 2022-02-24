@@ -108,7 +108,6 @@ skiuwers.on('group-participants-update', async (anu) => {
 console.log(anu)
 if (welcome == false) return
 try {
-//ppuser = await skiuwers.getProfilePicture(m.sender);
 rip = {"key": { "fromMe": false,"participant":"0@s.whatsapp.net",   "remoteJid": "6285945300923-1604595598@g.us"  }, "message": {orderMessage: {itemCount: 2022,status: 200, thumbnail: fs.readFileSync(`image/${thumb}`), surface: 200, message: `▷  ${setting.botname}\n▷    ${setting.ownername} `, orderTitle: 'skiuwers', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
 const mdata = await skiuwers.groupMetadata(anu.jid)
 console.log(anu)
@@ -279,11 +278,11 @@ skiuwers.copyNForward(m.key.remoteJid, m.message)
  * @param {function} cb <optional> 
  */
 function nocache(module, cb = () => { }) {
-    console.log('Module', `'${module}'`, 'is now being watched for changes')
-    fs.watchFile(require.resolve(module), async () => {
-        await uncache(require.resolve(module))
-        cb(module)
-    })
+console.log('Module', `'${module}'`, 'is now being watched for changes')
+fs.watchFile(require.resolve(module), async () => {
+await uncache(require.resolve(module))
+cb(module)
+})
 }
 
 /**
@@ -291,14 +290,13 @@ function nocache(module, cb = () => { }) {
  * @param {string} module Module name or path
  */
 function uncache(module = '.') {
-    return new Promise((resolve, reject) => {
-        try {
-            delete require.cache[require.resolve(module)]
-            resolve()
-        } catch (e) {
-            reject(e)
-        }
-    })
+return new Promise((resolve, reject) => {
+try {
+delete require.cache[require.resolve(module)]
+resolve()
+} catch (e) {
+reject(e)
 }
-
+})
+}
 starts()
