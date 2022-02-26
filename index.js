@@ -431,31 +431,26 @@ await skiuwers.chatRead(jid)
  
 mess = {
 wait: '```SEDANG DI PROSES 「 ⏳ 」```',
-success: '```BERHASIL 「 √ 」```',
-wrongFormat: '```GAGAL 「 X 」```',
-limit: '```MAAF LIMIT KAMU TELAH HABIS 「 ! 」```',
-error: {
-stick: '```FORMAT ERROR 「 ! 」```',
-Iv: '```LINK ERROR 「 ! 」```'
-},
+Iv: '```LINK ERROR 「 ! 」```',
+success: '```SUCCES 「 √ 」```',
+wrongFormat: '```FORMAT ERROR 「 X 」```',
+banned: '```SORRY YOUR HAVE BEEN IN BANNED 「 ! 」```',
+limit: '```SORRY YOUR LIMITS HAVE BEEN EXHAUSTED 「 ! 」```',
 only: {
 bot: '```BOT NOT ADMIN```',
 admin: '```JUST ONLY ADMIN```',
 owner: '```JUST ONLY OWNER```',
 premium: '```JUST ONLY PREMIUM```', 
 group: '```JUST ONLY CHAT GROUP```',
-private: '```JUST ONLY CHAT PRIVATE```',
-banned: '```YOU HAVE BEEN IN BANNED```',
+private: '```JUST ONLY CHAT PRIVATE```'
 }
 }
 
 const vcard = 'BEGIN:VCARD\n'
 + 'VERSION:3.0\n'
 + 'FN:Arip͘⁴̅⁰͍⁴̵〆︎\n'
-+ 'ORG:Owner;\n'
++ 'ORG:Creator;\n'
 + 'TEL;type=CELL;type=VOICE;waid=6287776101997:+62 8777-6101-997\n'
-+ 'EMAIL;type=INTERNET:ItsMeArip@gmail.com\n'
-+ 'URL:https://youtube.com/c/ItsMeArip\n'
 + 'END:VCARD'
 
 const isUrl = (url) => {
@@ -1255,9 +1250,8 @@ case prefix+ 'allmenu':
 case prefix+ 'listmenu': 
 case prefix+ 'menu':
 case prefix+ 'help':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
-if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 const premm = `${isOwner ? 'Owner' : isPremium ? 'Premium' : 'Free'}`
 let cekvipp = ms(_prem.getPremiumExpired(sender, premium) - Date.now())
 const premi = isPremium ? `${cekvipp.days} day ${cekvipp.hours} hour ${cekvipp.minutes} minute ${cekvipp.seconds} second`:'Not Premium'
@@ -1537,7 +1531,7 @@ skiuwers.relayWAMessage(pi, {waitForAck: true})
 break
 
 case prefix+'ownermenu':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 teks =`
 ⊙─❲ OWNER MENU ❳
@@ -1581,7 +1575,7 @@ break
 
 case prefix+'grupmenu':  
 case prefix+'groupmenu':   
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 teks =`
 ⊙─❲ GROUP MENU ❳
@@ -1626,7 +1620,7 @@ skiuwers.sendMessage(from, teks, text,  {quoted:ftroli, contextInfo:{"externalAd
 break
 
 case prefix+ 'setting': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 teks = `
 ⊙─❲ SETTING ❳
@@ -1665,7 +1659,7 @@ skiuwers.sendMessage(from, teks, text,  {quoted:ftroli, contextInfo:{"externalAd
 break
 
 case prefix+'shopmenu':   
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isCreator && !isOwner && !isRegistered) return verify(altar)
 teks =`
 ⊙─❲ SHOP MENU ❳
@@ -1687,7 +1681,7 @@ break
 
 case prefix+'funmenu':   
 case prefix+'gamemenu':   
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isCreator && !isOwner && !isRegistered) return verify(altar)
 teks =`
 ⊙─❲ FUN MENU ❳
@@ -1713,7 +1707,7 @@ skiuwers.sendMessage(from, teks, text,  {quoted:ftroli, contextInfo:{"externalAd
 break
 
 case prefix+'downloadmenu':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isCreator && !isOwner && !isRegistered) return verify(altar)
 teks =`
 ⊙─❲ DOWNLOAD MENU ❳
@@ -1735,7 +1729,7 @@ teks =`
 skiuwers.sendMessage(from, teks, text,  {quoted:ftroli, contextInfo:{"externalAdReply":{"title": `${ucapannya2} ✨\n${thisDay}, ${day} ${myMonths[bulan]} ${year}`,"body": `SUBSCRIBE YOUTUBE CHANNEL`,"previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./image/fake.jpg`),"sourceUrl": `${setting.fakereply}`}}})
 break
 case prefix+'makermenu':   
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isCreator && !isOwner && !isRegistered) return verify(altar)
 teks =`
 ⊙─❲ MAKER MENU ❳
@@ -1753,7 +1747,7 @@ teks =`
 skiuwers.sendMessage(from, teks, text,  {quoted:ftroli, contextInfo:{"externalAdReply":{"title": `${ucapannya2} ✨\n${thisDay}, ${day} ${myMonths[bulan]} ${year}`,"body": `SUBSCRIBE YOUTUBE CHANNEL`,"previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./image/fake.jpg`),"sourceUrl": `${setting.fakereply}`}}})
 break
 case prefix+'othermenu':   
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isCreator && !isOwner && !isRegistered) return verify(altar)
 teks =`
 ⊙─❲ OTHER MENU ❳
@@ -1780,7 +1774,7 @@ skiuwers.sendMessage(from, teks, text,  {quoted:ftroli, contextInfo:{"externalAd
 break
 
 case prefix+'searchingmenu':   
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isCreator && !isOwner && !isRegistered) return verify(altar)
 teks =`
 ⊙─❲ SEARCHING MENU ❳
@@ -1803,7 +1797,7 @@ teks =`
 skiuwers.sendMessage(from, teks, text,  {quoted:ftroli, contextInfo:{"externalAdReply":{"title": `${ucapannya2} ✨\n${thisDay}, ${day} ${myMonths[bulan]} ${year}`,"body": `SUBSCRIBE YOUTUBE CHANNEL`,"previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./image/fake.jpg`),"sourceUrl": `${setting.fakereply}`}}})
 break
 case prefix+'storagemenu':   
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isCreator && !isOwner && !isRegistered) return verify(altar)
 teks =`
 ⊙─❲ STORAGE MENU ❳
@@ -1829,7 +1823,7 @@ teks =`
 skiuwers.sendMessage(from, teks, text,  {quoted:ftroli, contextInfo:{"externalAdReply":{"title": `${ucapannya2} ✨\n${thisDay}, ${day} ${myMonths[bulan]} ${year}`,"body": `SUBSCRIBE YOUTUBE CHANNEL`,"previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./image/fake.jpg`),"sourceUrl": `${setting.fakereply}`}}})
 break
 case prefix+'convertmenu':   
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isCreator && !isOwner && !isRegistered) return verify(altar)
 teks =`
 ⊙─❲ CONVERT MENU ❳
@@ -1863,7 +1857,7 @@ case prefix+ 'ping':
 case prefix+ 'runtime':
 case prefix+ 'device': 
 case prefix+ 'perangkat':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 skitime = process.uptime()
 const timestamp = speed();
@@ -1893,7 +1887,7 @@ skiuwers.sendMessage(from, buttonMessagee, MessageType.buttonsMessage,{caption: 
 break
 
 case prefix+ 'setmenu':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!rip.key.fromMe && !isCreator && !isOwner) return reply(mess.only.owner)
 if (args[0] == 'simple') {
@@ -1914,7 +1908,7 @@ sendButMessage(from, `\nSilahkan pilih command dibawah\n`,
 break
 
 case prefix+ 'setgroup': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -1937,7 +1931,7 @@ skiuwers.sendMessage(from, buttonMessagee, MessageType.buttonsMessage,{caption: 
 break
 
 case prefix+ 'group': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -1961,7 +1955,7 @@ case prefix+'profil':
 case prefix+'profile':
 case prefix+'limit': 
 case prefix+'balance': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 const premmm = `${isOwner ? 'Owner' : isPremium ? 'Premium' : 'Free'}`
 const serialUserr = createSerial(20)
@@ -1990,7 +1984,7 @@ skiuwers.sendMessage(from, buttonMessagee, MessageType.buttonsMessage,{caption: 
 break
 
 case prefix+'info':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 const { wa_version, mcc, mnc, os_version, device_manufacturer, device_model } = skiuwers.user.phone
 anu = process.uptime()
@@ -2069,13 +2063,13 @@ buttonMessagee = {contentText: teks,footerText: `© All Creator BotWea | ${owner
 skiuwers.sendMessage(from, buttonMessagee, MessageType.buttonsMessage,{caption: 'BOTWEA © 2K22',"contextInfo": {text: 'hi',"forwardingScore": 999,isForwarded: true,sendEphemeral: true,"mentionedJid" : [sender]},quoted: ftroli,sendEphemeral: true })
 break
 case prefix+ 'github':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 teks = `Link : https://github.com/ItsMeArip`
 skiuwers.sendMessage(from, teks, text,  {quoted:ftroli, contextInfo:{"externalAdReply":{"title": `X-M4rh03 (@ItsMeArip) \n• Github profile and repositories `,"body": `Follow me on github`,"previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./image/fake.jpg`),"sourceUrl": `https://github.com/ItsMeArip`}}})
 break
 case prefix+ 'insta':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 teks = `Link : https://instagram.com/xyzitsme__`
 skiuwers.sendMessage(from, teks, text,  {quoted:ftroli, contextInfo:{"externalAdReply":{"title": `R I P (@arip404_) \n• Instagram photos and videos`,"body": `Follow me on instagram`,"previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./image/fake.jpg`),"sourceUrl": `https://instagram.com/xyzitsme__`}}})
@@ -2083,7 +2077,7 @@ break
 case prefix+ 'youtube':
 case prefix+ 'ytchannel':
 case prefix+ 'youtubechannel':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 teks = `Link : https://youtube.com/c/ItsMeArip`
 fakeyt(teks)
@@ -2091,14 +2085,14 @@ break
 case prefix+ 'api':
 case prefix+ 'apikey': 
 case prefix+ 'apiku':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 reply('Apikey : https://api-skiuwers.herokuapp.com/api')
 break
 case prefix+ 'sc':
 case prefix+ 'source': 
 case prefix+ 'sourcecode':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 reply('Sourcecode : https://github.com/skiuwers')
 break
@@ -2107,21 +2101,21 @@ case prefix+ 'grupbot':
 case prefix+ 'groupbot':
 case prefix+ 'linkgrupbot':
 case prefix+ 'linkgroupbot':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 teks = `Silahkan bergabung di group whatsapp\n\n© All Creator BotWea | ${ownername}  `
 skiuwers.sendMessage(from, teks, text, {quoted: fkontak, contextInfo:{"externalAdReply":{"title": `${botname}`,"body": `SUBSCRIBE YOUTUBE CHANNEL`,"previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": fs.readFileSync(`./image/fake.jpg`),"sourceUrl": `${setting.grub}`}}})
 break
 case prefix+'creator':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 let conarray = []
-ownerContact = ['6287776101997','0']
+ownerContact = ['6287776101997','6287776101997']
 for (let i of ownerContact.map(v => v + '@s.whatsapp.net')) {
 var vname = skiuwers.contacts[i] != undefined ? skiuwers.contacts[i].vname || skiuwers.contacts[i].notify : await skiuwers.getName(i)
 conarray.push({
-"displayName": 'X-Arip͘⁴̅⁰͍⁴̵〆',
-"vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:${vname ? `${vname}` : `${skiuwers.user.name}`}\nitem1.TEL;waid=${i.split('@')[0]}:${i.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nitem2.EMAIL;type=INTERNET:ItsMeArip@gmail.com\nitem2.X-ABLabel:Email\nitem3.URL:https://youtube.com/c/ItsMeArip\nitem3.X-ABLabel:Subscribe\nitem4.ADR:;;Indonesia;;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
+"displayName": 'Arip͘⁴̅⁰͍⁴̵〆',
+"vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:${vname ? `${vname}` : `${skiuwers.user.name}`}\nitem1.TEL;waid=${i.split('@')[0]}:${i.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nitem2.EMAIL;type=INTERNET:ItsMeArip@gmail.com\nitem2.X-ABLabel:Email\nitem3.URL:https://youtube.com/c/ItsMeArip\nitem3.X-ABLabel: Website\nitem4.ADR:;;Indonesia;;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
 })
 }
 hehe = await skiuwers.sendMessage(from, {
@@ -2130,15 +2124,15 @@ hehe = await skiuwers.sendMessage(from, {
 }, 'contactsArrayMessage',{ quoted: fkontak})
 iniowner = ` 
 const Key = ["ItsMeArip"]
-if (Key.includes("Rip")) {
+if (Key.includes("Arip͘⁴̅⁰͍⁴̵〆︎")) {
 reply("√")
 }
  `
 buttonss =
 [
-{buttonId: `${prefix}insta arip404_`, buttonText: {displayText: '𝙸𝙽𝚂𝚃𝙰𝙶𝚁𝙰𝙼'}, type: 1},
-{buttonId: `${prefix}github ItsMeArip`, buttonText: {displayText: '𝙶𝙸𝚃𝙷𝚄𝙱'}, type: 1},
-{buttonId: `${prefix}youtube`, buttonText: {displayText: '𝚈𝙾𝚄𝚃𝚄𝙱𝙴'}, type: 1},
+{buttonId: `${prefix}insta Arip͘⁴̅⁰͍⁴̵〆︎`, buttonText: {displayText: '𝙸𝙽𝚂𝚃𝙰𝙶𝚁𝙰𝙼'}, type: 1},
+{buttonId: `${prefix}github Arip͘⁴̅⁰͍⁴̵〆︎`, buttonText: {displayText: '𝙶𝙸𝚃𝙷𝚄𝙱'}, type: 1},
+{buttonId: `${prefix}youtube Arip͘⁴̅⁰͍⁴̵〆︎`, buttonText: {displayText: '𝚈𝙾𝚄𝚃𝚄𝙱𝙴'}, type: 1},
 ]
 buttonMessagee = {
 contentText: iniowner,
@@ -2162,7 +2156,7 @@ skiuwers.sendMessage(from, {displayname: "Arip͘⁴̅⁰͍⁴̵〆", vcard: vcar
 isForwarded: true,
 sendEphemeral: false,
 "externalAdReply": {
-"title": `X-M4rh03 (@ItsMeArip) `,
+"title": `Arip͘⁴̅⁰͍⁴̵〆︎ (@ItsMeArip) `,
 "body": `Github profile and repositories`,
 "previewType": "PHOTO",
 "thumbnailUrl": "https://telegra.ph/file/349e5fe040a66f5b51787.jpg/fake.jpg",
@@ -2174,7 +2168,7 @@ break
 case prefix+ 'iklan':
 case prefix+ 'sewa':
 case prefix+ 'sewabot':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 infoo = `
 ⊙ SEWA BOT 
@@ -2206,25 +2200,26 @@ case prefix+ 'dana':
 case prefix+ 'gopay':
 case prefix+ 'pulsa':
 case prefix+ 'payment':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 gambar = fs.readFileSync('./image/fake.jpg')
 sendButLoc(from, `
-⊙ Pembayaran Melalui OVO
-│
-└⊙ Via ovo : ${setting.ovo}
 
-⊙ Pembayaran Melalui DANA
+⊙ OVO 
 │
-└⊙ Via dana : ${setting.dana}
+└⊙ ${setting.ovo}
 
-⊙ Pembayaran Melalui GOPAY
+⊙ DANA 
 │
-└⊙ Via dana : ${setting.gopay}
+└⊙ ${setting.dana}
 
-⊙ Pembayaran Melalui PULSA
+⊙ GOPAY
 │
-└⊙ Via pulsa : ${setting.pulsa}
+└⊙ ${setting.gopay}
+
+⊙ PULSA
+│
+└⊙ ${setting.pulsa}
 
 Sistem : Transfer - Masukin Bot - Done
 Silahkan Chat Owner | Kirim Bukti Transfer \n`,
@@ -2236,7 +2231,7 @@ break
 case prefix+ 'donate':
 case prefix+ 'donasi':
 case prefix+ 'sedekah':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 donate = ` 
 ⊙ DONATION FROM YOU
@@ -2252,7 +2247,7 @@ break
 
 case prefix+ 's&k':
 case prefix+ 'rules':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 teks = ` 
 ⊙─❲ SYARAT & KETENTUAN ❳
@@ -2273,7 +2268,7 @@ skiuwers.sendMessage(from, buttonMessagee, MessageType.buttonsMessage,{caption: 
 break
 
 case prefix+ 'request':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!q) return reply(`Penggunaan : ${prefix}request ini request atau opsi saya kak`)
 const cfrr = body.slice(8)
@@ -2296,7 +2291,7 @@ break
 +++++++++++++++++++++++++++*/
 
 case prefix+ 'antitag':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args[0] === 'on') {
@@ -2316,7 +2311,7 @@ sendButMessage(from, `MODE ANTI TAG`, `\nSilahkan pilih salah satu`, [
 break;
 case prefix+ 'setbio':
 case prefix+ 'autobio':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args[0] == 'on') {
@@ -2336,7 +2331,7 @@ sendButMessage(from, `MODE AUTO BIO`, `\nSilahkan pilih salah satu`, [
 break;
 case prefix+ 'toxic':
 case prefix+ 'antitoxic':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args[0] === "on") {
@@ -2356,7 +2351,7 @@ sendButMessage(from, `MODE ANTI TOXIC`, `\nSilahkan pilih salah satu`, [
 break;
 case prefix+ 'readGC':
 case prefix+ 'readgc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args[0] === "on") {
@@ -2376,7 +2371,7 @@ sendButMessage(from, `MODE READ GC`, `\nSilahkan pilih salah satu`, [
 break;
 case prefix+ 'readPC':
 case prefix+ 'readpc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args[0] === "on") {
@@ -2395,7 +2390,7 @@ sendButMessage(from, `MODE READ PC`, `\nSilahkan pilih salah satu`, [
 }
 break;
 case prefix+'autoketik':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args[0] === "on") {
@@ -2414,7 +2409,7 @@ sendButMessage(from, `MODE AUTO KETIK`, `\nSilahkan pilih salah satu`, [
 }
 break;
 case prefix+'autorekam':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args[0] === "on") {
@@ -2434,7 +2429,7 @@ sendButMessage(from, `MODE AUTO REKAM`, `\nSilahkan pilih salah satu`, [
 break;
 case prefix+ 'antitroli':
 case prefix+ 'antitroligc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args[0] === "on") {
@@ -2454,7 +2449,7 @@ sendButMessage(from, `MODE ANTI TROLI`, `\nSilahkan pilih salah satu`, [
 break;
 case prefix+ 'antibug':
 case prefix+ 'antibuggc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args[0] === "on") {
@@ -2473,7 +2468,7 @@ sendButMessage(from, `MODE ANTI BUG`, `\nSilahkan pilih salah satu`, [
 }
 break;
 case prefix+ 'antidelete':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args[0] === "on") {
@@ -2492,7 +2487,7 @@ sendButMessage(from, `MODE ANTI DELETE`, `\nSilahkan pilih salah satu`, [
 }
 break;
 case prefix+ 'anticall':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args[0] === "on") {
@@ -2511,7 +2506,7 @@ sendButMessage(from, `MODE ANTI CALL`, `\nSilahkan pilih salah satu`, [
 }
 break;
 case prefix+ 'welcome':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args[0] == "on") {
@@ -2530,7 +2525,7 @@ sendButMessage(from, `MODE WELCOME`, `\nSilahkan pilih salah satu`, [
 }
 break;
 case prefix+ 'antivirtex':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2553,7 +2548,7 @@ sendButMessage(from, `MODE ANTI VIRTEX`, `\nSilahkan pilih salah satu`, [
 }
 break;
 case prefix+ "antilink":
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2592,7 +2587,7 @@ case prefix+ 'groupwa':
 case prefix+ 'grupwa':
 case prefix+ 'groupwa':
 case prefix+ 'gcwa':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2608,7 +2603,7 @@ reply(res)
 });
 break 
 case prefix+ 'towame':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!isGroup) return reply(mess.only.group)
@@ -2621,7 +2616,7 @@ reply(`Penggunaan ${prefix}towame @tag atau reply`)
 }
 break
 case prefix+ 'wame':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!isGroup) return reply(mess.only.group)
@@ -2641,7 +2636,7 @@ reply('Reply pesan atau tag member')
 break
 
 case prefix+ 'getstatus': case prefix+ 'getbio':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!isGroup) return reply(mess.only.group)
@@ -2658,7 +2653,7 @@ reply('Reply pesan atau tag member')
 }
 break
 case prefix+ 'getpic': case prefix+ 'getpp': case prefix+ 'getprofile':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!isGroup) return reply(mess.only.group)
@@ -2675,7 +2670,7 @@ skiuwers.sendMessage(from, buffer, image, {quoted: rip, caption: `*Profile Pictu
 }
 break
 case prefix+ 'getnum': case prefix+ 'getnomor': case prefix+ 'getnumber':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 //if (!isGroup) return reply(mess.only.group)
@@ -2685,7 +2680,7 @@ reply(`wa.me/+${mentioned.split('@')[0]}`)
 break
 
 case prefix+'ps':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2703,7 +2698,7 @@ skiuwers.toggleDisappearingMessages(m.chat, 0)
 break
 
 case prefix+ 'totalpesan':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2726,7 +2721,7 @@ break
 
 case prefix+'grup':
 case prefix+'gc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2743,7 +2738,7 @@ break
 case prefix+'gcname':
 case prefix+'setnama':
 case prefix+'setnamagc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2755,7 +2750,7 @@ break
 case prefix+'gcdesk':
 case prefix+'setdesk':
 case prefix+'setdeskgc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2766,7 +2761,7 @@ break
 
 case prefix+ 'setppgc':
 case prefix+ 'setppgrup':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2797,7 +2792,7 @@ reply('```SUKSES```')
 break
 
 case prefix+ 'bukagc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2812,7 +2807,7 @@ skiuwers.groupSettingChange(from, GroupSettingChange.messageSend, false)
 break
 
 case prefix+ 'tutupgc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2828,7 +2823,7 @@ break
 
 case prefix+'add':
 try {
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2858,7 +2853,7 @@ return
 break
 
 case prefix+'kick': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2868,7 +2863,7 @@ break
 
 case prefix+'hedsot':
 case prefix+'headsot':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2878,7 +2873,7 @@ break
 
 case prefix+ 'dm':
 case prefix+ 'demote':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2887,7 +2882,7 @@ dm(from, mentionUser)
 break
 case prefix+ 'pm':
 case prefix+ 'promote':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2898,13 +2893,13 @@ break
 case prefix+ 'delete': 
 case prefix+ 'del': 
 case prefix+ 'd':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isQuotedReply) return reply(`Reply pesan dari bot!`)
 skiuwers.deleteMessage(from, { id: rip.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
 break
 case prefix+ 'q': case prefix+'ulang':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!m.quoted) return reply('reply pesan!')
@@ -2914,7 +2909,7 @@ await jpio.quoted.copyNForward(m.chat, true)
 break
 
 case prefix+ 'caripesan':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2937,7 +2932,7 @@ reply('Pesan tidak ditemukan!')
 break
 
 case prefix+'tagall':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2953,7 +2948,7 @@ mentions(teks, members_id, true)
 break
 
 case prefix+ 'spam':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -2974,7 +2969,7 @@ m.quoted.copyNForward(m.chat, true)
 break
 case prefix+ 'tag': 
 if (!isGroup) return reply(mess.only.group)
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isPremium && !rip.key.fromMe && !isOwner && !isCreator && !isGroupAdmins ) return reply(mess.only.premium)
 if (rip.message.extendedTextMessage === undefined || rip.message.extendedTextMessage === null) {
@@ -2986,7 +2981,7 @@ hideTag(from, `${quotedText}`)
 break
 
 case prefix+ 'hidetag':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3021,7 +3016,7 @@ skiuwers.sendMessage(from, { name: `${nama}`,address: `${impostor}`}, MessageTyp
 break
 
 case prefix+ 'kontag':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3043,7 +3038,7 @@ skiuwers.sendMessage(from, {displayName: `${nah}`, vcard: vcard}, contact, {cont
 break
 
 case prefix+ 'sticktag':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3071,7 +3066,7 @@ reply(`*Reply sticker yang sudah dikirim*`)
 break
 
 case prefix+ 'totag':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isGroupAdmins) return reply(mess.only.admin)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3153,7 +3148,7 @@ reply(`reply gambar/sticker/audio/video dengan caption ${prefix}totag`)
 break
 
 case prefix+'listadmin':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3169,7 +3164,7 @@ break
 
 case prefix+'listgc':
 case prefix+'listgroup':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3183,7 +3178,7 @@ reply(teks1)
 break
 
 case prefix+ 'resetlink':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3195,7 +3190,7 @@ break
 
 case prefix+'infogc':
 case prefix+'infogroup':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3230,7 +3225,7 @@ skiuwers.sendMessage(from, buf, image, {quoted: rip, caption: teks})
 break
 
 case prefix+'inspect':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3267,7 +3262,7 @@ break
 
 case prefix+'creategroup':
 case prefix+'creategrup':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3286,7 +3281,7 @@ reply(`Sukes membuat grup:\n${argza}`)
 break
 
 case prefix+ "listonline": 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3314,7 +3309,7 @@ break;
 
 case prefix+'nyimak':
 case prefix+'sider':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3334,7 +3329,7 @@ break
 case prefix+ 'linkgc': 
 case prefix+ 'linkgrup': 
 case prefix+ 'linkgroup': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3345,7 +3340,7 @@ skiuwers.sendMessage(from, yeh, text, {quoted: rip})
 break
 
 case prefix+ 'kontak':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup) return reply(mess.only.group)
 if (!isBotGroupAdmins) return reply(mess.only.bot)
@@ -3457,7 +3452,7 @@ type: 1,
 break
 
 case prefix+ 'gelud':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup)return reply(mess.only.group)
 if (rip.message.extendedTextMessage.contextInfo.mentionedJid > 1) return reply('Hanya bisa dengan 1 orang')
@@ -3490,7 +3485,7 @@ break
 
 case prefix+ 'slot':
 case prefix+ 'jackpot':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 //if (isGroup) return reply(mess.only.private)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 const sotoy = ['🍊 : 🍒 : 🍐','🍒 : 🍐 : 🍊','🍐 : 🍒 : 🍐','🍊 : 🍋 : 🔔','🔔 : 🍒 : 🍐','🔔 : 🍒 : 🍊','🍊 : 🍋 : 🔔','🍐 : 🍒 : 🍋','🍐 : 🍐 : 🍐','🍊 : 🍒 : 🍒','🔔 : 🔔 : 🍇 ','🍌 : 🍒 : 🔔','🍐 : 🔔 :  🔔','🍊 : 🍋 :  🍒','🍋 : 🍋 :  🍌','🔔 : 🔔 : 🍇','🔔 : 🍐 :  🍇','🔔 : ?? :  🔔','🍒 : 🍒 :  🍒','🍌 : 🍌 : 🍌','🍇 : 🍇 : 🍇']
@@ -3588,7 +3583,7 @@ type: 1,
 break
 
 case prefix+ 'suit':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 //if (isGroup) return reply(mess.only.private)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 let suit = ["gunting", "batu", "kertas"];
@@ -3669,7 +3664,7 @@ bp = await sendButLoc(from, `\nSilahkan pilih command dibawah\n`,
 break
 
 case prefix+ 'dadu':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (isGroup) return reply(mess.only.private)
@@ -3690,78 +3685,133 @@ case prefix+ 'play':
 if (isBanned) return reply(mess.only.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
-if (!arg && !m.quoted) return reply('Masukan judul atau reply judul lagunya')
-if (arg) {
-const playy = await axios.get(`https://cililitan.herokuapp.com/api/ytsearch?q=${encodeURI(arg)}`)
-const mulaikah = playy.data.result[0]
-const {title, thumbnail, link, id} = mulaikah
-const captions = `
-⊙ *Title* : ${title}
-⊙ *Link* : ${link}
-
-Silahkan pilih satu satu format yang akan di downlod dan tunggu file media akan dikirim mungkin butuh beberapa menit [ ⏳ ]`
-gambar = await getBuffer(thumbnail)
-gbutsan = 
-[
-{buttonId: `${prefix}video ${link}`, buttonText: {displayText: 'VIDEO'}, type: 'RESPONSE'},
-{buttonId: `${prefix}audio ${link}`, buttonText: {displayText: 'AUDIO'}, type: 'RESPONSE'},
-]
-mhan = await skiuwers.prepareMessage('0@s.whatsapp.net', {name: botname, jpegThumbnail: gambar}, location, {thumbnail: gambar})
- gbuttonan = {
-locationMessage: mhan.message.locationMessage,
-contentText: captions,
-footerText: `© All Creator BotWea | ${setting.ownername}`,
-buttons: gbutsan,
-headerType: 'LOCATION'
-}
-skiuwers.sendMessage(from, gbuttonan, MessageType.buttonsMessage, {quoted: rip})
-} else if (!arg) {
-const playy = await axios.get(`https://cililitan.herokuapp.com/api/ytsearch?q=${m.quoted.text}`)
-console.log(playy)
-const mulaikah = playy.data.result[0]
-console.log(mulaikah)
-const {title, thumbnail, link, id} = mulaikah
+if(!q) return reply(`Penggunaan : ${prefix + command} Melukis senja`)
 reply(mess.wait)
-const captions = `
-⊙ *Title* : ${title}
-⊙ *Link* : ${link}
-
-Silahkan pilih satu satu format yang akan di downlod dan tunggu file media akan dikirim mungkin butuh beberapa menit [ ⏳ ]`
-gambar = await getBuffer(thumbnail)
+res = await yts(q).catch(e => {
+reply('_[ ! ] Error Gagal Dalam Memasuki Web Y2mate_')
+})
+captions = `
+「 YOUTUBE PLAY 」
+	   
+⊙ Judul : ${res.all[0].title}
+⊙ Views : ${res.all[0].views}
+⊙ Durasi : ${res.all[0].timestamp}
+⊙ Channel : ${res.all[0].author.name}
+⊙ Diupload Pada : ${res.all[0].ago}
+⊙ URL Video : ${res.all[0].url}
+⊙ Link Channel : ${res.all[0].author.url} \n`,
 gbutsan = 
 [
-{buttonId: `${prefix}video ${link}`, buttonText: {displayText: 'VIDEO'}, type: 'RESPONSE'},
-{buttonId: `${prefix}audio ${link}`, buttonText: {displayText: 'AUDIO'}, type: 'RESPONSE'},
+{buttonId:`${prefix}ytmp3 ${res.all[0].url}`,buttonText:{displayText:'AUDIO'},type:1},
+{buttonId:`${prefix}ytmp4 ${res.all[0].url}`,buttonText:{displayText:'VIDEO'},type:1},
 ]
-mhan = await skiuwers.prepareMessage('0@s.whatsapp.net', {name: botname, jpegThumbnail: gambar}, location, {thumbnail: gambar})
- gbuttonan = {
-locationMessage: mhan.message.locationMessage,
-contentText: captions,
-footerText: `© All Creator BotWea | ${setting.ownername}`,
-buttons: gbutsan,
-headerType: 'LOCATION'
+fs.writeFileSync(`./ytmp.jpeg`, await getBuffer(res.all[0].image))
+imageMsg = ( await skiuwers.prepareMessage(from, fs.readFileSync(`./ytmp.jpeg`), 'imageMessage', {thumbnail: Buffer.alloc(0)})).message.imageMessage
+buttonsMessage = {footerText:`© All Creator BotWea | ${ownername}\n`, imageMessage: imageMsg,
+contentText: captions, buttons: gbutsan,headerType: 4}
+prep = await skiuwers.prepareMessageFromContent(from,{buttonsMessage},{quoted: ftroli})
+skiuwers.relayWAMessage(prep)
+fs.unlinkSync(`./ytmp.jpeg`)
+limitAdd(sender, limit)
+break        
+
+case prefix+'yts': 
+if (isBanned) return reply(mess.banned)
+if (!rip.key.fromMe && !isRegistered) return verify(altar)
+if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
+if(!q) return reply(`Penggunaan : ${prefix + command} Melukis senja`)
+reply(mess.wait)
+try{
+ysearch = await yts(q)
+}catch(e){
+return reply(`*EROR*`)
 }
-skiuwers.sendMessage(from, gbuttonan, MessageType.buttonsMessage, {quoted: rip})
-} 
+p = 0
+teks = `YOUTUBE SEARCHING\nTotal : ${ysearch.all.length}\n\n`
+for(let i of ysearch.all){
+teks += `${p+=1}.\nTitle :` + i.title + '\n'
+teks += `Url :` + i.url + '\n'
+teks += `Durasi :` + i.timestamp + '\n\n-----------------------------\n\n'
+}
+teks +=  `Ketik ${prefix}getmusik (angka) untuk mengambil Musik!\nKetik ${prefix}getvideo (angka) untuk mengambil Video!`
+reply(teks)
+limitAdd(sender, limit)
+break
+case prefix+'getvideo':
+if (isBanned) return reply(mess.banned)
+if (!rip.key.fromMe && !isRegistered) return verify(altar)
+if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
+try{
+if(!q) return reply('Masukkan nomor urutnya!')
+if(!rip.quoted.fromMe) return reply('Reply pesan hasil pencarian youtube!')
+reply(mess.wait)
+quee = 'YOUTUBE SEARCHING'
+qteks = rip.quoted.text
+if(qteks.includes(quee)){
+jmlh = rip.quoted.text.split('Total : ')[1].split('\n')[0]
+if(isNaN(args[0])) return reply('Input harus berupa nomor!')
+if(args[0].text > jmlh) return reply(`Hanya Tersedia ${jmlh} Pilihan\nSilahkan coba pilih lagi dibawah angka ${jmlh}`)
+ pilih = JSON.stringify(await eval(`${args[0]}-1`), null, 2) 
+ downm = await ytv(rip.quoted.text.split('-----------------------------')[pilih].split('Url :')[1].split('\n')[0])
+ const { dl_link, thumb, title, filesizeF, filesize } = downm
+ if(Number(filesize) >= 20000){
+ short = await axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
+ reply(`UKURAN FILE TERLALU BESAR [ ! ] \n\n⊙ Title : ${title} \n⊙ Size : ${filesizeF} \n⊙ Link : ${a.data} \n\nSilahkan download link diatas`)
+ }
+ sendFile(dl_link, video, {mimetype: 'video/mp4',quoted:rip})
+}
+} catch(e) {
+reply('Reply pesan Bot hasil pencarian youtube!')
+console.log(e)
+}
+limitAdd(sender, limit)
+break
+case prefix+'getmusik':
+if (isBanned) return reply(mess.banned)
+if (!rip.key.fromMe && !isRegistered) return verify(altar)
+if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
+try{
+if(!rip.quoted.fromMe) return reply('Reply pesan Bot hasil pencarian youtube!')
+if(!q) return reply('Masukkan nomor urutnya!')
+reply(mess.wait)
+quee = 'YOUTUBE SEARCHING'
+qteks = rip.quoted.text
+if(qteks.includes(quee)){
+jmlh = rip.quoted.text.split('Total : ')[1].split('\n')[0]
+if(isNaN(args[0])) return reply('Input harus berupa nomor!')
+if(args[0].text > jmlh) return reply(`Hanya Tersedia ${jmlh} Pilihan\nSilahkan coba pilih lagi dibawah angka ${jmlh}`)
+ pilih = JSON.stringify(await eval(`${args[0]}-1`), null, 2) 
+ downm = await yta(rip.quoted.text.split('-----------------------------')[pilih].split('Url :')[1].split('\n')[0])
+ const { dl_link, thumb, title, filesizeF, filesize } = downm
+ if(Number(filesize) >= 10000){
+ short = await axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
+ reply(`UKURAN FILE TERLALU BESAR [ ! ] \n\n⊙ Title : ${title} \n⊙ Size : ${filesizeF} \n⊙ Link : ${a.data} \n\nSilahkan download link diatas`)
+ }
+ sendFile(dl_link, audio, {mimetype: 'audio/mp3',quoted:rip})
+}
+} catch(e) {
+reply('Reply pesan Bot hasil pencarian youtube!')
+console.log(e)
+}
 limitAdd(sender, limit)
 break
 
 case prefix+'audio':
 case prefix+'ytmp3':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (args.length < 0) return reply('Link Nya Mana?')
-if (!isUrl(args[0]) && !args[0].includes('youtube')) return reply(mess.lv)
+if (!isUrl(args[0]) && !args[0].includes('youtube')) return reply(mess.wrongFormat)
 try {
 yta(args[0])
 .then((res) => {
 const { dl_link, thumb, title, filesizeF, filesize } = res
 axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
 .then((a) => {
-if (Number(filesize) >= 20000) return reply('UKURAN FILE TERLALU BESAR')
 reply(mess.wait)
-sendFile(dl_link, audio, {mimetype: 'audio/mp4',quoted:rip})
+if (Number(filesize) >= 20000) return reply(`UKURAN FILE TERLALU BESAR [ ! ] \n\n⊙ Title : ${title} \n⊙ Size : ${filesizeF} \n⊙ Link : ${a.data} \n\nSilahkan download link diatas`)
+sendFile(dl_link, audio, {mimetype: 'audio/mp3',quoted:rip})
 })
 })
 .catch((err) => reply(`${err}`))
@@ -3771,19 +3821,19 @@ limitAdd(sender, limit)
 break
 case prefix+'video':
 case prefix+'ytmp4':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (args.length < 0) return reply('Link Nya Mana?')
-if (!isUrl(args[0]) && !args[0].includes('youtube')) return reply(mess.lv)
+if (!isUrl(args[0]) && !args[0].includes('youtube')) return reply(mess.wrongFormat)
 try {
 ytv(args[0])
 .then((res) => {
 const { dl_link, thumb, title, filesizeF, filesize } = res
 axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
 .then((a) => {
-if (Number(filesize) >= 20000) return reply('UKURAN FILE TERLALU BESAR')
 reply(mess.wait)
+if (Number(filesize) >= 30000) return reply(`UKURAN FILE TERLALU BESAR [ ! ] \n\n⊙ Title : ${title} \n⊙ Size : ${filesizeF} \n⊙ Link : ${a.data} \n\nSilahkan download link diatas`)
 sendFile(dl_link, video, {mimetype: 'video/mp4',quoted:rip})
 })
 })
@@ -3793,8 +3843,46 @@ sendFile(dl_link, video, {mimetype: 'video/mp4',quoted:rip})
 limitAdd(sender, limit)
 break
 
+case prefix+ 'playmp3':{
+if (isBanned) return reply(mess.banned)
+if (isGroup) return reply(mess.only.private)
+if (!rip.key.fromMe && !isRegistered) return verify(altar)
+if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
+if (!q) return reply(`Kirim perintah *${prefix + command} <query>*`)
+let yut = await yts(q)
+yta(yut.videos[0].url)
+.then((res) => {
+const { dl_link, thumb, title, filesizeF, filesize } = res
+axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
+.then((a) => {
+if (Number(filesize) >= 20000) return sendFileFromUrl(from, thumb, `
+UKURAN FILE TERLALU BESAR [ ! ]
+
+⊙ Title : ${title}
+⊙ Size : ${filesizeF} 
+⊙ Link : ${a.data}
+
+Silahkan download link diatas`, rip)
+const playmp3 = `
+「  YOUTUBE PLAY AUDIO 」
+
+⊙ Title : ${title}
+⊙ Size : ${filesize}
+⊙ Upload : ${yut.videos[0].ago}
+⊙ Viewers : ${yut.videos[0].views}
+⊙ Duration : ${yut.videos[0].timestamp}
+⊙ Link : ${yut.videos[0].url}
+
+Silahkan menunggu file media akan dikirim mungkin butuh beberapa menit [ ⏳ ]`
+sendFileFromUrl(from, thumb, playmp3, rip)
+sendFile(dl_link, audio, {mimetype: 'audio/mp3',quoted:rip})
+})
+})
+}
+limitAdd(sender, limit)
+break
 case prefix+ 'playmp4':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (isGroup) return reply(mess.only.private)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
@@ -3805,13 +3893,14 @@ ytv(yut.videos[0].url)
 const { dl_link, thumb, title, filesizeF, filesize } = res
 axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
 .then((a) => {
-if (Number(filesize) >= 20000) return sendFileFromUrl(from, thumb, `
+if (Number(filesize) >= 30000) return sendFileFromUrl(from, thumb, `
 UKURAN FILE TERLALU BESAR [ ! ]
 
 ⊙ Title : ${title}
+⊙ Size : ${filesizeF} 
 ⊙ Link : ${a.data}
 
-Untuk durasi lebih dari batas disajikan dalam bentuk link, silahkan melanjutkan melalui link yang telah disertakan.`, rip)
+Silahkan download link diatas`, rip)
 const playmp4 = `
 「  YOUTUBE PLAY VIDEO 」
 
@@ -3830,43 +3919,6 @@ sendFile(dl_link, video, {mimetype: 'video/mp4',quoted:rip})
 }
 limitAdd(sender, limit)
 break
-case prefix+ 'playmp3':{
-if (isBanned) return reply(mess.only.banned)
-if (isGroup) return reply(mess.only.private)
-if (!rip.key.fromMe && !isRegistered) return verify(altar)
-if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
-if (!q) return reply(`Kirim perintah *${prefix + command} <query>*`)
-let yut = await yts(q)
-yta(yut.videos[0].url)
-.then((res) => {
-const { dl_link, thumb, title, filesizeF, filesize } = res
-axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
-.then((a) => {
-if (Number(filesize) >= 20000) return sendFileFromUrl(from, thumb, `
-UKURAN FILE TERLALU BESAR [ ! ]
-
-⊙ Title : ${title}
-⊙ Link : ${a.data}
-
-Untuk durasi lebih dari batas disajikan dalam bentuk link, silahkan melanjutkan melalui link yang telah disertakan.`, rip)
-const playmp3 = `
-「  YOUTUBE PLAY AUDIO 」
-
-⊙ Title : ${title}
-⊙ Size : ${filesize}
-⊙ Upload : ${yut.videos[0].ago}
-⊙ Viewers : ${yut.videos[0].views}
-⊙ Duration : ${yut.videos[0].timestamp}
-⊙ Link : ${yut.videos[0].url}
-
-Silahkan menunggu file media akan dikirim mungkin butuh beberapa menit [ ⏳ ]`
-sendFileFromUrl(from, thumb, playmp3, rip)
-sendFile(dl_link, audio, {mimetype: 'audio/mp4',quoted:rip})
-})
-})
-}
-limitAdd(sender, limit)
-break
 
 case prefix+'download':
 case prefix+'ttnowm':
@@ -3877,7 +3929,7 @@ case prefix+'twittervideo':
 case prefix+'instagramvideo':
 case prefix+'facebookvideo':
 case prefix+'pinterestvideo':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (args.length < 0) return reply(`Kirim perintah *${prefix + command} <link>*`)
@@ -3968,7 +4020,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'mediafire':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 if (isGroup) return reply(mess.only.private)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
@@ -4007,7 +4059,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'instagram':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (isGroup) return reply(mess.only.private)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
@@ -4031,7 +4083,7 @@ break
 
 case prefix+ 'tiktok':
 case prefix+ 'tiktokdownload':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (isGroup) return reply(mess.only.private)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
@@ -4056,7 +4108,7 @@ case prefix+ 'ttwm':
 case prefix+ 'ttvideo': 
 case prefix+ 'tiktokwm':
 case prefix+ 'tiktokvideo':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (isGroup) return reply(mess.only.private)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
@@ -4108,7 +4160,7 @@ break
 case prefix+ 'ttaudio':
 case prefix+ 'tiktokaudio':
 case prefix+ 'tiktokmusik':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (isGroup) return reply(mess.only.private)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
@@ -4154,7 +4206,7 @@ break
 //------------------< STALKER >-------------------//
 
 case prefix+ 'igstalk':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
@@ -4188,7 +4240,7 @@ break
 case prefix+'ghstalk': 
 case prefix+'githubstalk': 
 case prefix+'ghuser':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
@@ -4225,14 +4277,14 @@ limitAdd(sender, limit)
 .catch((err) => {
 sendMess(setting.ownerNumber, 'GH Stalk Error : ' + err)
 console.log(color('[GH Stalk]', 'red'), err)
-reply(mess.error.api)
+reply(mess.wrongFormat)
 })
 }
 limitAdd(sender, limit)
 break
 
 case prefix+'tiktokstalk':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
@@ -4267,7 +4319,7 @@ break
 //=========================================================\\
 
 case prefix+ 'robot':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 encmedial = JSON.parse(JSON.stringify(rip).replace('quotedM','m')).message.extendedTextMessage.contextInfo
@@ -4275,7 +4327,7 @@ medial = await skiuwers.downloadAndSaveMediaMessage(encmedial)
 ran = getRandom('.mp3')
 exec(`ffmpeg -i ${medial} -filter_complex "afftfilt=real='hypot(re,im)*sin(0)':imag='hypot(re,im)*cos(0)':win_size=512:overlap=0.75" ${ran}`, (err, stderr, stdout) => {
 fs.unlinkSync(medial)
-if (err) return reply(mess.error.api)
+if (err) return reply(mess.wrongFormat)
 hah = fs.readFileSync(ran)
 skiuwers.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', duration: 3467900999999, ptt:true, quoted: rip})
 fs.unlinkSync(ran)
@@ -4283,7 +4335,7 @@ fs.unlinkSync(ran)
 limitAdd(sender, limit)
 break
 case prefix+ 'gemuk': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 encmediaz = JSON.parse(JSON.stringify(rip).replace('quotedM','m')).message.extendedTextMessage.contextInfo
@@ -4299,7 +4351,7 @@ fs.unlinkSync(ran)
 limitAdd(sender, limit)
 break
 case prefix+ 'balik': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 encmediau = JSON.parse(JSON.stringify(rip).replace('quotedM','m')).message.extendedTextMessage.contextInfo
@@ -4315,7 +4367,7 @@ fs.unlinkSync(ran)
 limitAdd(sender, limit)
 break
 case prefix+ 'bass': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 encmediao = JSON.parse(JSON.stringify(rip).replace('quotedM','m')).message.extendedTextMessage.contextInfo
@@ -4334,7 +4386,7 @@ break
 case prefix+ 'tobass':   
 case prefix+ 'mp3bass':   
 case prefix+ 'bassmp3':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!q) return reply(`Penggunaan ${prefix}bass <angka> \nContoh : ${prefix}bass 94`)
@@ -4354,7 +4406,7 @@ break
 case prefix+ 'tts': 
 case prefix+ 'translate': 
 try {if (args.length > 50) return reply('```Error, Teks Terlalu Panjang!```')
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (rip.message.extendedTextMessage === undefined || rip.message.extendedTextMessage === null) {
@@ -4368,7 +4420,7 @@ dtt.length > 50
 exec(`ffmpeg -i ${ranm} -ar 48000 -vn -c:a libopus ${rano}`, (err) => {
 fs.unlinkSync(ranm)
 buff = fs.readFileSync(rano)
-if (err) return reply(mess.error)
+if (err) return reply(mess.wrongFormat)
 skiuwers.sendMessage(from, buff, audio, {quoted: rip, ptt:true})
 fs.unlinkSync(rano)
 })
@@ -4384,7 +4436,7 @@ dtt.length > 50
 exec(`ffmpeg -i ${ranm} -ar 48000 -vn -c:a libopus ${rano}`, (err) => {
 fs.unlinkSync(ranm)
 buff = fs.readFileSync(rano)
-if (err) return reply(mess.error)
+if (err) return reply(mess.wrongFormat)
 skiuwers.sendMessage(from, buff, audio, {quoted: rip, ptt: true, duration: 3467900999999, quoted:rip})
 fs.unlinkSync(rano)
 })
@@ -4397,7 +4449,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'toimg':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!isQuotedSticker) return reply('Reply atau tag stiker nya lord!')
@@ -4417,7 +4469,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'tomp4':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!isQuotedSticker && !isQuotedAudio) return reply('Reply medianya!')
@@ -4462,7 +4514,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'tomp3':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!isQuotedVideo) return reply('Reply medianya!')
@@ -4481,7 +4533,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'fast':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!isQuotedVideo) return reply('Reply videonya!')
@@ -4500,7 +4552,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'slow':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!isQuotedVideo) return reply('Reply videonya!')
@@ -4519,7 +4571,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'reverse':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!isQuotedVideo) return reply('```Reply videonya!```')
@@ -4537,7 +4589,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'filetourl': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 var imgbb = require('imgbb-uploader')
@@ -4576,7 +4628,7 @@ break
 case prefix+ 'tourl':
 case prefix+ 'videotourl':
 case prefix+ 'imagetourl':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if ((isMedia && !rip.message.videoMessage || isQuotedImage || isQuotedVideo ) && args.length == 0) {
@@ -4592,7 +4644,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'imgtourl':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if ((isMedia && !rip.message.videoMessage || isQuotedImage ) && args.length == 0) {
@@ -4662,13 +4714,13 @@ sendFileFromUrl(from, res.result.thumb, resultramalan, rip)
 }).catch((err) => {
 sendMess(ownerNumber, 'RamalPasangan Error : ' + err)
 console.log(color('[RamalPasangan]', 'red'), err)
-reply(mess.error.api)
+reply(mess.wrongFormat)
 })
 limitAdd(sender, limit)
 break
 
 case prefix+'gantengcek':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup)return reply(mess.only.group)
 var kamu = groupMembers
@@ -4681,7 +4733,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'cantikcek':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup)return reply(mess.only.group)
 var kamu = groupMembers
@@ -4694,7 +4746,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'jadiancek':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup)return reply(mess.only.group)
 var kamu = groupMembers
@@ -4707,7 +4759,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'seberapagay':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup)return reply(mess.only.group)
 const ga = ['9', '17', '28', '34', '48', '59', '62', '74', '83', '97', '100', '29', '94', '75', '82', '41', '39']
@@ -4717,7 +4769,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'seberapalesby':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup)return reply(mess.only.group)
 const les = ['9', '17', '28', '34', '48', '59', '62', '74', '83', '97', '100', '29', '94', '75', '82', '41', '39']
@@ -4727,7 +4779,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'rate':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!q) return reply(`Penggunaan ${command} text\n\nContoh : ${command} kegantengan saya`)
 const ra = ['9', '17', '28', '34', '48', '59', '62', '74', '83', '97', '100', '29', '94', '75', '82', '41', '39']
@@ -4737,7 +4789,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'hobby':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isGroup)return reply(mess.only.group)
 const hob = ['Desah Di Game', 'Ngocokin Doi', 'Stalking sosmed nya mantan', 'Kau kan gak punya hobby awokawok', 'Memasak', 'Membantu Atok', 'Mabar', 'Nobar', 'Sosmedtan', 'Membantu Orang lain', 'Nonton Anime', 'Nonton Drakor', 'Naik Motor', 'Nyanyi', 'Menari', 'Bertumbuk', 'Menggambar', 'Foto fotoan Ga jelas', 'Maen Game', 'Berbicara Sendiri']
@@ -4757,7 +4809,7 @@ break
 case prefix+ 'tulis':
 
 case prefix+ 'nulis':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (args.length < 1) return reply(`*Usage*: ${prefix}nulis nama&kelas&nomo&kata\n*Penggunaan*: ${prefix}nulis udin&20&17&blablabla`)
@@ -4781,7 +4833,7 @@ limitAdd(sender, limit)
 break;
 
 case prefix+ 'nuliskiri':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!q) return reply('Textnya mana ?')
@@ -4792,7 +4844,7 @@ skiuwers.sendMessage(from, anu, image, { quoted: rip, thumbnail: fs.readFileSync
 limitAdd(sender, limit)
 break
 case prefix+ 'nuliskanan':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!q) return reply('Textnya mana ?')
@@ -4803,7 +4855,7 @@ skiuwers.sendMessage(from, anu, image, { quoted: rip, thumbnail: fs.readFileSync
 limitAdd(sender, limit)
 break
 case prefix+ 'foliokanan':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!q) return reply('Textnya mana ?')
@@ -4814,7 +4866,7 @@ skiuwers.sendMessage(from, anu, image, { quoted: rip, thumbnail: fs.readFileSync
 limitAdd(sender, limit)
 break
 case prefix+ 'foliokiri':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!q) return reply('Textnya mana ?')
@@ -4831,7 +4883,7 @@ case prefix+ 'sticker':
 case prefix+ 'stiker':
 case prefix+ 'sg':
 case prefix+ 's':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if ((isMedia && !rip.message.videoMessage || isQuotedImage) && args.length == 0) {
@@ -4891,10 +4943,10 @@ break
 case prefix+ 'exif':
 case prefix+ 'take':
 case prefix+ 'colong':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
-if (!isQuotedSticker) return reply(mess.error.stick)
+if (!isQuotedSticker) return reply(mess.wrongFormat)
 encmedia = JSON.parse(JSON.stringify(rip).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 media = await skiuwers.downloadAndSaveMediaMessage(encmedia)
 anu = args.join(' ').split('|')
@@ -4908,7 +4960,7 @@ break
 case prefix+ 'stikerwm':
 case prefix+ 'stickerwm':
 case prefix+ 'swm':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 pe = args.join(' ')
@@ -4972,7 +5024,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'emoji':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (!q) return reply('emojinya?')
@@ -4995,7 +5047,7 @@ break
 
 case prefix+ 'hitung': 
 case prefix+ 'kalkulator': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 var mtk = body.slice(8)
@@ -5006,7 +5058,7 @@ break
 
 case prefix+ 'cerpen':
 case prefix+ 'ceritapendek':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 data = fs.readFileSync('./lib/cerpen.js');
@@ -5018,7 +5070,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'tarot':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 data = fs.readFileSync('./lib/tarot.js');
@@ -5043,7 +5095,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'ceritahoror':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 data = fs.readFileSync('./lib/horor.js');
@@ -5068,7 +5120,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'cecan':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 data = fs.readFileSync('./lib/apirandom.js');
@@ -5094,7 +5146,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'cogan':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 data = fs.readFileSync('./lib/apirandom.js');
@@ -5120,7 +5172,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'asupan':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 reply(mess.wait)
@@ -5134,7 +5186,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'darkjokes':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 reply(mess.wait)
@@ -5151,7 +5203,7 @@ case prefix+'hbd':
 case prefix+'kelahiran': 
 case prefix+'zodiak': 
 case prefix+'cekzodiak': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 let textus = args.join(" ")
@@ -5199,7 +5251,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'ocr':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if ((isMedia && !rip.message.videoMessage || isQuotedImage) && args.length == 0) {
@@ -5222,7 +5274,7 @@ break
 
 case prefix+'tr':
 case prefix+'translate':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if(!q) return reply(`Cara Penggunaan ${prefix}tr [kodebahasa teks]/reply pesan dengan ${prefix}tr kodebahasa\nPenggunaan : ${prefix}tr id I hate you`)
@@ -5247,7 +5299,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'get':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if(!q) return reply('linknya?')
@@ -5259,7 +5311,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'artinama':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (args.length < 1) return reply('Apa yang mau dicari?')
@@ -5269,7 +5321,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'lirik':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if(!q) return reply('lagu apa?')
@@ -5279,7 +5331,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'jahil':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 var gh = args.join('')
@@ -5292,7 +5344,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'settarget':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!rip.key.fromMe) return 
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
@@ -5304,7 +5356,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'jahilpc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if(!q) return reply(`${prefix}jahilpc teks target|teks lu bro`)
@@ -5318,7 +5370,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'faktaunik':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 const faktau = ["Negara Indonesia berada di posisi ke-4 sebagai Negara Terindah di Dunia versi situs First Choice.","Di Italia, dalam aturannya minuman Cappuccino hanya boleh di minum sebelum waktu siang.","AS, Australia, Finlandia, Jerman dan Kanada adl negara maju tanpa UN. Tahukah anda sekolah trbaik di dunia ada di Finlandia walau tanpa UN.","","\"Jengkol is very nice\" komentar Pierre Bouvier vokalis Simple Plan.","Tiap satu kali jari kita mengklik mouse komputer, ada 1,42 kalori yang terbakar dalam tubuh. (Penelitian, Convert Anything to Calories).","Di Jepang kuno, prajurit diolesi minyak kodok pada tubuh mereka dengan keyakinan bahwa hal itu akan membuat tubuh mereka antirobek."," Di Jepang, ketiduran saat bekerja (inemuri) dapat ditolerir, karena dipandang sebagai kelelahan yang muncul akibat bekerja terlalu keras.","Gergaji ripanik awalnya diciptakan sebagai alat kedokteran untuk membantu melahirkan bayi.","Jangan sering mengatakan kata  di Australia dan Selandia Baru. Di sana, kata berarti mengajak untuk melakukan hubungan seks.","Jamur merang Laetiporus dikenal sebagai julukan \"ayam hutan\" karena konon rasanya mirip seperti daging ayam goreng.","Kaki katak merupakan hidangan istimewa di eropa. Tahukah Anda: sekitar 80% impor katak Eropa berasal dari Indonesia.","Jika Anda mengetik \"do the harlem shake\" di search bar YouTube, layar akan melakukan Harlem Shake!. [Google Chrome]","Melihat melalui lubang kecil akan segera meningkatkan penglihatan Anda sementara.","YouTube menyebutkan rata-rata ada 4000 video baru Harlem Shake yang diunggah setiap hari. [Yahoo!]","Semut memiliki kuburan sendiri. Tapi tahukah anda: Gurita memiliki kebun dan suka berkebun. (wikipedia)","Coklat mengandung Theobromine, molekul organik yang dapat membantu menguatkan enamel gigi. (Penelitian dari Tulane University).","Wanita 2 kali lebih banyak menggunakan emoticon dalam pesan teks dibandingkan pria. (Penelitian di Rice University)","Biarpun Buzz Aldrin adalah orang kedua yang menginjak di bulan tetapi ia adalah orang pertama yang membuang kotoran di ruang angkasa.","Fakta unik berikutnya adalah, Psikolog mengatakan bahwa mengirim dan menerima pesan teks benar-benar dapat meningkatkan mood Anda ketika Anda merasa kesepian. (Telegraph)","Thailand merupakan satu-satunya negara di Asia Tenggara yang tidak pernah dijajah.","Musik memiliki kemampuan untuk memperbaiki kerusakan otak serta mengembalikan kenangan yang hilang. (cracked .com)"," Perasaan kesepian memicu respon yang sama di otak sebagai rasa sakit fisik. (BBCnews)","Di Cape Town, Afrika Selatan, remaja laki-laki yang memiliki gigi ompong dianggap tampan / maskulin.","Semakin pahit cokelat (tinggi zat theobromine), semakin tinggi manfaatnya. Rajin mengkonsumsi 1bar cokelat/hari dapat menyembuhkan batuk kronis.","Kata \"Mouse\" (tikus) berasal dari turunan Bahasa Sansekerta \"Mus\" yang berarti \"pencuri\".","Tidur Siang (Power Nap) trbukti menambah tinggi badan, dikrnkan saat kita tidur siang hormon pertumbuhan (Growth Hormone) lbh aktif bekerja.","Bilangan prima terbesar di dunia saat ini panjangnya 17 juta digit angka, cukup banyak untuk mengisi 28 lembar halaman pada buku novel.","Menurut sebuah studi, minum teh hijau setelah makan ikan membantu menghalangi zat Mercury yang terkandung dalam ikan memasuki aliran darah."," Memperpanjang usia handphone hingga 4 tahun dapat mengurangi dampak lingkungan sampai 40 persen. [Hasil studi di Swiss]","Duduk bersama dgn teman-teman / keluarga utk makan bersama, dpt meningkatkan kebahagiaan & membantu meringankan depresi. [ehealthnewsdaily]","Abibliophobia adalah fobia atau ketakutan terhadap kehabisan bahan bacaan.","Pada abad pertengahan di Eropa, garam sangat mahal harganya, sehingga disebut sebagai \"emas putih\".","Mengunyah permen karet dapat meningkatkan kemampuan berpikir cepat dan kewaspadaan hingga 10 persen. [Jurnal Brain and Cognition]","Wanita yang sedang stres selama kehamilannya cenderung melahirkan anak-anak yang pemarah. [Institute of Psychiatry, King College London]","","35. Disarankan supaya membeli sepatu pada sore hari. Sebab, setelah seharian berjalan, di sore hari kaki akan membesar 5-8 persen.","Musik memiliki kemampuan untuk memperbaiki kerusakan otak serta mengembalikan kenangan yang hilang. [cracked .com]","Menurut penelitian baru, usia harapan hidup anak band rata-rata lebih tinggi dibandingkan musisi yang memilih solo karir. (detikHealth)","Pulau Dewata Bali merupakan 1 dari 10 pulau paling romantis di dunia. [majalah Travel+Leisure]","Universitas di Jepang selalu melakukan upacara peringatan bagi hewan (contoh: tikus) yang mati dalam pengujian laboratorium. [web.archive .org]","Berkedip memberikan otak Anda istirahat sebentar. [para ilmuan di Japan’s Osaka University]","Wanita yang bahagia dalam sebuah pernikahan akan mengalami berat badan naik setengah pound (0,22 kg) setiap 6 bulan. [DailyMail]","Rasa cemburu berlebihan bisa digolongkan penyakit jiwa, krna dpt mendorong ssorg utk bunuh diri / menghabisi nyawa org lain. [riset]","","Mengkonsumsi buah tomat beberapa kali dlm kurun waktu seminggu dpt mengatasi perasaan depresi. [peneliti di Tianjin Medical Univ., Cina]"," Perasaan kesepian memicu respon yang sama di otak sebagai rasa sakit fisik. [BBCnews]","Di Cape Town, Afrika Selatan, remaja laki-laki yang memiliki gigi ompong dianggap tampan / maskulin.","Memeluk orang yg disayangi dpt membantu menurunkan tekanan darah, mengurangi stres dan","kecemasan, bahkn dpt meningkatkan memori. [Dailymail]","Kata \"Mouse\" (tikus) berasal dari turunan Bahasa Sansekerta \"Mus\" yang berarti \"pencuri\".Berjalan kaki atau bersepeda ke sekolah mempertajam konsentrasi siswa di kelas dan tetap bertahan sekitar 4 jam kemudian. [Medical Daily]","Menurut riset pasar global Euromonitor International, pria Korea adalah pria yang paling suka bersolek dari pria lain di dunia.","Rata-rata orang akan merasa 100 persen sehat / fit hanya 61 hari dalam setahun. (Penelitian di Inggris)","Polydactyl Cat adalah jenis kucing yang memiliki jempol di kaki mereka.","Hanya dengan mengurangi brightness dari televisi, anda mampu berhemat lebih dari Rp 1,5 juta setahun. [kompas]","Di Jerman, tahanan yg ingin meloloskan diri dr penjara adl bukan mrupakn perbuatan ilegal. Krn itu salah1 naluri dasar manusia untuk kebebasan.","Wanita merasa diri mereka terlihat paling jelek dan terlihat lebih tua pada hari Rabu pukul 15.30 . [studi baru dari St Tropez]Orang yang rutin bermain video game ternyata memiliki penalaran yang baik dibanding kebanyakan orang. (detikHealth)","Nama \"Gorila\" berasal dari kata Yunani \"Gorillai\" yang berarti \"perempuan berbulu\".","IBM mengatakan bahwa dalam kurun waktu 5 tahun ke depan, komputer bakal mirip manusia yang bisa melihat, mendengar, mencium dan merasakan.","Selama abad ke-13, kata \"nice\" sebenarnya berarti “stupid”, \"senseless\" dan “foolish\".","59. 49% dari pemilik Smartphone adalah jomblo. (Survei, \"2012 Online User Behavior and Engagement Study\")","Fakta Unik","60. Gazzarella adalah keju mozzarella yang terbuat dari susu kucing. 61. Rata-rata orang melihat / mengecek ponselnya sekitar 150 kali sehari. (Laporan Nokia pada MindTrek 2010)","Lalat dapat menyalurkan sekitar 300 bakteri setiap kali hinggap di benda.","Tertawa dapat meningkatkan aktivitas antibodi sekitar 20%, juga membantu untuk menghancurkan virus dan sel-sel tumor.","Fobia matematika (mathematics anxiety) memicu respon yang sama di otak sbg rasa sakit fisik. Gejalanya yaitu melihat angka saja sudah nyeri."," Karakter kartun Bugs Bunny diberi pangkat kehormatan sersan-mayor di Korps Marinir AS pada akhir Perang Dunia II. (wikipedia)","Apel yang ditaruh di ruang terbuka akan matang 10 kali lebih cepat dibandingkan dengan apel yang ditaruh di kulkas.","Ungkapan 'Smitten' adalah untuk menyebut 'naksir' dalam bahasa Inggris.","Menurut etiket internasional, sebuah jabat tangan yang tepat dan baik harus berlangsung selama sekitar 3 detik & dilepaskan setelah goyang.","Ketika kita sedang jatuh cinta, otak akan memproduksi dopamin ekstra, bahan kimia yang membuat seseorang menjadi gembira berlebihan."," \"Mwahahaha\" dan \"lolz\" telah ditambahkan ke Kamus Inggris Oxford.","Menurut penelitian, pria cenderung menurunkan volume suaranya ketika ia berbicara dg seseorang yg ia cintai, sementara perempuan sebaliknya.","Di Perancis, jajanan Arum Manis (Rambut Nenek) disebut \"Barbe á Papa\" yang berarti \"Jenggot Ayah\".","Menurut penelitian, PR terlalu banyak sebenarnya dapat menyebabkan siswa menjadi stres, depresi & mendapat nilai lebih rendah.","Hangry adalah penggabungan kata dari \"Hungry\" dan \"Angry\", di pakai ketika anda sedang lapar dan marah.","Kentut dari bakteri membuat keju swiss memiliki lubang-lubang.","Mendengarkan musik benar-benar dapat mengurangi rasa sakit kronis hingga 20% dan membantu meringankan depresi hingga 25%. (sciencedaily)","Orang yang merasa kesepian memiliki kemungkinan mengalami kepikunan 70-80% lebih tinggi. (Journal of Neurosurgery Neurologi and Psychiatry)","Melamun dpt memendekkan telomere (bagian paling ujung sel DNA) yang berperan dlm menjaga kestabilan sel, dimana dapat mempercepat proses penuaan."]
@@ -5328,7 +5380,7 @@ fakeitem(`Fakta Unik : ${ran_faktau}`)
 limitAdd(sender, limit)
 break
 case prefix+ 'pantun':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 const pantun = ["\nAnak tikus rindu ibunya\n\nsombong nich ceritanya","\nAda kepompong ada kupu\n\nbales donk sms dari aku","\nBeli bandeng\n\ndi Malaysia\n\ngue ganteng\n\nkayak Pasha","\nHati siapa tak bimbang\n\nsitu botak minta dikepang","\nBuah semangka\n\nbuah duren\n\nnggak nyangka\n\ngue keren\n ","\n Mawar bersemi\n\ndi batang kayu\n\ndo you love me\n\nlike i love you","\nBurung perkutut\n\nburung kuthilang\n\nkamu kentut\n\nenggak bilang bilang","\nBread is roti\n\nshadow is bayang\n\nbefore you mati\n\nbetter you sembahyang","\nJangan takut\n\njangan khawatir\n\nitu kentut\n\nbukan petir","\nBeli ikan di pasar malam\n\ndasar bego ni kawan","\nMakan duren sambil ngelamun,\n\nHati-hati ketelen ntar bijinya","\nDi  sana gunung, di sini gunung\n\nCiptaan Tuhan deh","\nKan bandeng\n\nmakan kawat\n\norang ganteng\n\nnumpang lewat","\nOrang ganteng\n\nsuka sama si Rini\n\ngak seneng\n\nmaju sini","\nMelon manis di air es\n\nke mana aja lo gak pernah sms","\nJambu merah\n\ndi dinding\n\njangan marah\n\njust kidding","\nBuah semangka\n\nbuah manggis\n\nnggak nyangka\n\ngue manis","\nMen sana\n\nin corpore sano\n\ngue maen ke sana,\n\nelo maen ke sono!","\nBuah apel\n\ndi air payau\n\nnggak level\n\nlayauuuuuuu","\nDi sini bingung, di sana linglung\n\nemangnya enak, enggak nyambung…","\nBuah semangka berdaun sirih\n\nBuah ajaib kali yah","\nPilih suara harpa yang jelas.\n\nTali di harpa diikat cinta","\nCiuman di pipi\n\nciuman di dahi\n\nApa yang dicium sesudah lah cinta?","\nSepandai-pandai tupai melompat\n\nPolisi lebih pandai melompat","\nDua tiga kacang tanah\n\nenggak ada pacar yang datang ke rumah","\nDapet kado isinya tomat\n\nBodo amat!!","\nDulu delman, sekarang gokar\n\ndulu teman, sekarang pacar","\nStroberi mangga apel\n\nsorry gak level","\nBola pingpong dimakan gelatik\n\nBiar ompong yang penting cantik\n","\nMata belo,\n\nala komedian.\n\ngue sama elo?\n\nmaunya jadian.","\nTunda lapar,\n\nmakan indomi.\n\nhati menggelepar,\n\ncintapun bersemi.","\nPotong kuku,\n\npendek-pendek.\n\nhatiku beku,\n\nsi abang mendadak ngondek.","\nBeli ketan,\n\nbeli kain songket.\n\nbiar udah mantan,\n\nkita tetep lengket.","\nKe pasar, nyari obat gatal\n\nDasar, gak modal!","\nMakan semangka,\n\nmakan kedondong.\n\nkalau suka,\n\nnyatain dong.","\nGa punya pendirian,\n\nbikin jemu.\n\nga mau sendirian,\n\nmaunya bobo sama kamu.","\nNembak itik,\n\nlangsung kena.\n\nkamu cantik,\n\nhey nona!","\nKotak amal,\n\ndigoyang-goyang.\n\nkemarin aku diramal,\n\njodohnya sama abang.","\nHari Jumat,\n\npada pake batik.\n\nsalam hormat,\n\nbuat neng cantik.","\nPecahan genting,\n\ndi bawah kursi.\n\nbetah meeting,\n\nkarena si boss seksi.","\nNangis-nangis,\n\nmobil kena srempet.\n\nneng manis,\n\nmau dong dipepet.","\nPanasin mentega,\n\nkarena mulai beku.\n\nkamu mau ga,\n\njadi imamku?","\nPotong sebahu,\n\nbiar ga sendu.\n\nkamu tahu?\n\nAku rindu.","\nJangan tanya,\n\nkapan lulus kuliah.\n\nga dapet anaknya,\n\nmamanya boleh lah","\nBikin anak,\n\ndi pojokan sekolah\n\nkalau mau enak,\n\nnikah dulu lah.","\nMain mata,\n\nmesem-mesem.\n\nneng tetep cinta,\n\nbiarpun abang keteknya asem.","\nTiduran di tandu,\n\nberjam-jam.\n\nhati merindu,\n\nmata sulit memejam.","\nUbek-ubek peti,\n\ncari gunting.\n\nsaking cinta mati,\n\nneng rela bunting.","\nNamanya penjahat,\n\npolisi jadi inceran.\n\nbosan jadi temen curhat,\n\nmaunya pacaran.","\nKe salon creambath,\n\nbiar aliran darah lancar.\n\nbosen ah jadi sahabat,\n\nmaunya jadi pacar!"]
@@ -5339,7 +5391,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'fakedata':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 data = fs.readFileSync('./lib/fdata.js');
@@ -5370,7 +5422,7 @@ break
 //=========================================================\\
 
 case prefix+'otaku':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (isGroup) return reply(mess.only.private)
@@ -5394,7 +5446,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'komiku':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (isGroup) return reply(mess.only.private)
@@ -5412,7 +5464,7 @@ break
 
 case prefix+ 'anime':
 case prefix+ 'randomanime': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (isGroup) return reply(mess.only.private)
@@ -5454,7 +5506,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'pinterest':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if(!q) return reply('Masukkan query')
@@ -5466,7 +5518,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'playstore':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if(!q) return reply('Mau cari apa?')
@@ -5485,7 +5537,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'google':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (args.length == 0) return reply(`Penggunaan : ${prefix}google  Apa itu googlegoogle?`)
@@ -5505,7 +5557,7 @@ break
 
 case prefix+ 'wiki':
 case prefix+ 'wikipedia':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (args.length < 1) return reply(' Yang Mau Di Cari Apa? ')
@@ -5524,7 +5576,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'ytsearch':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (args.length < 1) return reply('Tolong masukan query!')
@@ -5551,7 +5603,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'getcode':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !rip.key.fromMe) return reply(mess.only.owner)
 if (!rip.key.fromMe) return 
@@ -5564,7 +5616,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+ 'brainly':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (args.length < 1) return reply('Pertanyaan apa')
@@ -5588,7 +5640,7 @@ break
 //=========================================================\\
 
 case prefix+ 'delvideo': case prefix+ 'deletevideo': case prefix+ 'delvid':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 if (!q) return reply(`Nama Video Yang Mau Di Hapus Apa Lord?`)
 try {
@@ -5604,7 +5656,7 @@ reply(`Gagal Menghapus Video ${q}!`)
 limitAdd(sender, limit)
 break
 case prefix+ 'delaudio': case prefix+ 'delvn': case prefix+ 'deletevn':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 if (!q) return reply(`Nama Audio Yang Mau Di Hapus Apa Lord?`)
 try {
@@ -5621,7 +5673,7 @@ reply(`Gagal Menghapus Audio ${q}!`)
 limitAdd(sender, limit)
 break
 case prefix+ 'delimage': case prefix+ 'deleteimage': case prefix+ 'delfoto': case prefix+ 'delimg':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 if (!q) return reply(`Nama Sticker Yang Mau Di Hapus Apa Lord?`)
 try {
@@ -5637,7 +5689,7 @@ reply(`Gagal Menghapus Image ${q}!`)
 limitAdd(sender, limit)
 break 
 case prefix+ 'delstik': case prefix+ 'delstick': case prefix+ 'delsticker': case prefix+ 'delstiker':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 if (!q) return reply(`Nama Sticker Yang Mau Di Hapus Apa Lord?`)
 try {
@@ -5654,7 +5706,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'addstik':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 if (!isQuotedSticker) return reply('```Reply stiker nya```')
 svst = body.slice(9)
@@ -5668,7 +5720,7 @@ reply(`Sukses Menambahkan Sticker\nCek dengan cara ${prefix}liststik`)
 limitAdd(sender, limit)
 break
 case prefix+'addimg':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 if (!isQuotedImage) return reply('```Reply imagenya```')
 clara = body.slice(8)
@@ -5682,7 +5734,7 @@ reply(`Sukses Menambahkan image\nCek dengan cara ${prefix}listimg`)
 limitAdd(sender, limit)
 break
 case prefix+'addvid':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 if (!isQuotedVideo) return reply('```Reply vidionya```')
 svst = body.slice(8)
@@ -5696,7 +5748,7 @@ reply(`Sukses Menambahkan video\nCek dengan cara ${prefix}listvideo`)
 limitAdd(sender, limit)
 break
 case prefix+'addvn':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 if (!isQuotedAudio) return reply('```Reply vnnya```')
 svst = body.slice(7)
@@ -5711,7 +5763,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'getstik':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 namastc = body.slice(9)
 try {
@@ -5723,7 +5775,7 @@ reply('Pack tidak terdaftar')
 limitAdd(sender, limit)
 break
 case prefix+'getimg':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 namastc = body.slice(8)
 try {
@@ -5735,7 +5787,7 @@ reply('```Pack tidak terdaftar```')
 limitAdd(sender, limit)
 break
 case prefix+'getvid':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 namastc = body.slice(8)
 try {
@@ -5747,7 +5799,7 @@ reply('```Pack tidak terdaftar```')
 limitAdd(sender, limit)
 break
 case prefix+'getvn':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 namastc = body.slice(7)
 try {
@@ -5760,7 +5812,7 @@ limitAdd(sender, limit)
 break
 
 case prefix+'listvid':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 teks = '*List Video :*\n\n'
 for (let awokwkwk of videonye) {
@@ -5771,7 +5823,7 @@ skiuwers.sendMessage(from, teks.trim(), extendedText, { quoted: rip, contextInfo
 limitAdd(sender, limit)
 break
 case prefix+'liststik':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 teks = '*Sticker list :*\n\n'
 for (let awokwkwk of setiker) {
@@ -5782,7 +5834,7 @@ skiuwers.sendMessage(from, teks.trim(), extendedText, { quoted: rip, contextInfo
 limitAdd(sender, limit)
 break
 case prefix+'listimg':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 teks = '*Image list :*\n\n'
 for (let awokwkwk of imagenye) {
@@ -5793,7 +5845,7 @@ skiuwers.sendMessage(from, teks.trim(), extendedText, { quoted: rip, contextInfo
 limitAdd(sender, limit)
 break
 case prefix+'listvn':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isOwner && !isCreator && !isPremium) return reply(mess.only.premium)
 teks = '*List Vn:*\n\n'
 for (let awokwkwk of audionye) {
@@ -5815,7 +5867,7 @@ break
 
 case prefix+'tfbalance':
 case prefix+'giftbalance':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (!q)return reply(`Penggunaan : ${prefix}giftbalance @tag 10`)
@@ -5828,7 +5880,7 @@ break
 case prefix+'tf':
 case prefix+'tflimit':
 case prefix+'giftlimit':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (!q)return reply(`Penggunaan : ${prefix + command} @tag 10`)
@@ -5839,7 +5891,7 @@ reply('Succes')
 break
 
 case prefix+'buylimit':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!q) return reply(`Kirim perintah *${prefix}buylimit* jumlah limit yang ingin dibeli\n\nHarga 1 limit = $10 balance`)
 if (q.includes('-')) return reply(`Jangan menggunakan -`)
@@ -5853,10 +5905,10 @@ reply(monospace(`Pembeliaan limit sebanyak ${q} berhasil\n\nSisa Balance : $${ge
 break
 
 case prefix+'addprem':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
-if (!q)return reply(`*Format Error!*\n\n*Penggunaan :*\n• *${prefix}addprem @tag 10d*\n\n*Note :*\n• s : detik\n• m : menit\n• h : jam\n• d : hari\n`)
+if (!q)return reply(`*Penggunaan :*\n• *${prefix}addprem @tag 10d*\n\n*Note :*\n• s : detik\n• m : menit\n• h : jam\n• d : hari\n`)
 expired = q.split(" ")[1]
 const pnom = {id: `${q.split(" ")[0].replace("@",'')}@s.whatsapp.net`,expired: Date.now() + toMs(expired) }
 premium.push(pnom) 
@@ -5865,7 +5917,7 @@ reply(`_Succses_`)
 break
 
 case prefix+'dellprem':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 delprem = `${args[0].replace('@', '')}@s.whatsapp.net`
@@ -5894,13 +5946,13 @@ break
 
 case prefix+'cekprem': 
 case prefix+'cekpremium':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isPremium) return reply('```FALSE```')
 let cekvip = ms(_prem.getPremiumExpired(sender, premium) - Date.now())
 let premiumnya = `${cekvip.days} day(s) ${cekvip.hours} hour(s) ${cekvip.minutes} minute(s) ${cekvip.seconds} second(s)`
 try {
-ppimg = await skiuwers.getProfilePicture(sender)
+ppimg = await skiuwers.getProfilePicture(`${sender.split('@')[0]}@c.us`)
 } catch {
 ppimg = 'https://telegra.ph/file/349e5fe040a66f5b51787.jpg/fake.jpg'
 }
@@ -5909,14 +5961,14 @@ teks = `*── 「 PREMIUM USER 」──*
 ⊙ *Nama : ${pushname}*
 ⊙ *Tag : @${sender.split("@")[0]}*
 ⊙ *Expired : ${premiumnya}*`
-its = await getBuffer (ppimg)
-skiuwers.sendMessage(from, teks, text, {contextInfo: { forwardingScore: 9999, isForwarded: false, mentionedJid: [sender]},quoted: rip, caption: teks
+gambar = await getBuffer(ppimg)
+skiuwers.sendMessage(from, gambar, image, {contextInfo: { forwardingScore: 9999, isForwarded: false, mentionedJid: [sender]},quoted: rip, caption: teks
 })
 break
 
 case prefix+'listbalance': 
 case prefix+'topbalance':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 skiuwers.updatePresence(from, Presence.composing)
 let txot = `*── 「 TOP BALANCE 」 ──* \n\n⊙ Total : ${balance.length}\n\n`
@@ -5932,7 +5984,7 @@ break
 
 case prefix+ 'listlimit':
 case prefix+ 'toplimit':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 let txot = `*── 「 TOP  LIMIT 」 ──* \n\n⊙ Total : ${limit.length}\n\n`
 let mebn = [];
@@ -5946,7 +5998,7 @@ mentions(txot, mebn, true)
 break
 
 case prefix+'listprem':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 skiuwers.updatePresence(from, Presence.composing)
 let txt = `*── 「 LIST PREMIUM 」 ──* \n\n⊙ Total : ${premium.length}\n\n`
@@ -5968,7 +6020,7 @@ break
 //=========================================================\\
 
 case prefix+ 'upswteks':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (!q) return reply('Isi teksnya!')
@@ -5977,7 +6029,7 @@ reply(`Sukses Up story wea teks ${q}`)
 break
 
 case prefix+ 'upswimage':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (isQuotedImage) {
@@ -5992,7 +6044,7 @@ reply('```Reply gambarnya!```')
 break
 
 case prefix+ 'upswvideo':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (isQuotedVideo) {
@@ -6007,7 +6059,7 @@ reply('```Reply videonya!```')
 break
 
 case prefix+'culik':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('_*MASUKIN ID GRUPNYA*_')
@@ -6019,7 +6071,7 @@ skiuwers.groupAdd(args[0], skiuuu)
 break
 
 case prefix+ 'pspc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (!q) return reply(`Kirim perintah : ${prefix}pspc on/off`)
@@ -6039,7 +6091,7 @@ await reply(`Berhasil menonaktifkan pesan sementara ${anupcc.length} pribadi cha
 break
 
 case prefix+ 'psgc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (!q) return reply(`Kirim perintah : ${prefix}pspc on/off`)
@@ -6059,7 +6111,7 @@ await reply(`Berhasil menonaktifkan pesan sementara ${anupcc.length} pribadi cha
 break
 
 case prefix+ 'deletepc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 anu = await skiuwers.chats.all().filter(v => v.jid.endsWith('s.whatsapp.net'))
@@ -6071,7 +6123,7 @@ includeStarred: false
 await reply(`Berhasil menghapus ${anu.length} chat personal`)
 break
 case prefix+ 'deletegc':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 ane = await skiuwers.chats.all().filter(v => v.jid.endsWith('c.us'))
@@ -6084,7 +6136,7 @@ await reply(`Berhasil menghapus ${ane.length} chat group`)
 break
 
 case prefix+ 'restart':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 const cmdse = 'pm2 restart main'
@@ -6099,7 +6151,7 @@ console.log(stdout)
 break
 
 case prefix+ 'addtoxic':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply( `Kirim perintah ${prefix}addtoxic [kata kasar]. contoh ${prefix}addtoxic bego`)
@@ -6110,7 +6162,7 @@ reply('Success Menambahkan Toxic Word!')
 break
 
 case  prefix+'ban':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 bnnd = `${args[0].replace('@', '')}@s.whatsapp.net`
@@ -6120,7 +6172,7 @@ reply(`Nomor ${bnnd} telah dibanned!`)
 break
 
 case  prefix+'unban':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 ya = `${args[0].replace('@', '')}@s.whatsapp.net`
@@ -6131,7 +6183,7 @@ reply(`Nomor ${ya} telah di unban!`)
 break
 
 case prefix+ 'listtoxic':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 let lbw = `Ini adalah list toxic word\nTotal : ${tox.length}\n\n`
@@ -6143,7 +6195,7 @@ break
 
 case prefix+ 'blocklist':
 case prefix+ 'listblock':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 teks = 'List Block :\n'
@@ -6156,7 +6208,7 @@ break
 
 case prefix+ 'banlist':
 case prefix+ 'listban':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 ben = 'List Banned :\n\n'
@@ -6168,7 +6220,7 @@ skiuwers.sendMessage(from, ben.trim(), extendedText, {quoted: rip, contextInfo: 
 break
 
 case prefix+ 'block':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 skiuwers.blockUser (`${body.slice(7)}@s.whatsapp.net`, "add")
@@ -6176,7 +6228,7 @@ skiuwers.sendMessage(from, `perintah Diterima, memblokir ${body.slice(7)}@s.what
 break
 
 case prefix+ 'unblock':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 skiuwers.blockUser (`${body.slice(9)}@s.whatsapp.net`, "remove")
@@ -6184,7 +6236,7 @@ skiuwers.sendMessage(from, `perintah Diterima, membuka blokir ${body.slice(9)}@s
 break 
 
 case prefix+ 'readmore':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('teks nya mana om?')
@@ -6195,7 +6247,7 @@ skiuwers.sendMessage(from, `${has}‎‎‎‎‎‎‎‎‎‎‎‎‎‎‎�
 break
 
 case prefix+ 'resetlimit':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 var reset2 = []
@@ -6208,7 +6260,7 @@ await sleep(5000)
 break
 
 case prefix+ 'outall':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 let totalgroup = skiuwers.chats.array.filter(u => u.jid.endsWith('@g.us')).map(u => u.jid)
@@ -6220,7 +6272,7 @@ skiuwers.groupLeave(id)
 break
 
 case prefix+ 'kickall': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 for (let i of groupMembers) {
@@ -6229,7 +6281,7 @@ await kickMember(from, [i.jid])
 break
 
 case prefix+'readall':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 var chats = await skiuwers.chats.all()
@@ -6242,7 +6294,7 @@ console.log(chats.length)
 break
 
 case prefix+'clearall':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 let chiit = await skiuwers.chats.all()
@@ -6258,7 +6310,7 @@ break
 case prefix+'bc':
 case prefix+'bcall':
 case prefix+'broadcast':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('```TEXT?```')
@@ -6278,7 +6330,7 @@ break
 case prefix+ 'bcprivate': 
 case prefix+ 'bcpersonal': 
 case prefix+ 'bcpc': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('```TEXT?```')
@@ -6293,7 +6345,7 @@ break
 case prefix+ 'bcgroup': 
 case prefix+ 'bcgrup': 
 case prefix+ 'bcgc': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('```TEXT?```')
@@ -6313,7 +6365,7 @@ reply(`SUKSES BROADCAST GROUP\n\nTotal : ${groupz.length} Groups`)
 break
 
 case prefix+ 'bcaudio':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 anu = await skiuwers.chats.all().filter(v => v.jid.endsWith('g.us'))
@@ -6331,7 +6383,7 @@ case prefix+'bcsticker':
 case prefix+'bcstick':
 case prefix+'bcstik':
 case prefix+'bcgif':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 anu = await skiuwers.chats.all().filter(v => v.jid.endsWith('g.us'))
@@ -6346,7 +6398,7 @@ reply('```SUKSES BROADCAST```')
 break
 
 case prefix+'bcvideo':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('.......')
@@ -6362,7 +6414,7 @@ reply('```SUKSES BROADCAST```')
 break
 
 case prefix+'bcimage':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('```TEXT?```')
@@ -6384,7 +6436,7 @@ reply('```SUKSES BROADCAST```')
 break
 
 case prefix+ 'bcpcaudio':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 anu = await skiuwers.chats.all().filter(v => v.jid.endsWith('s.whatsapp.net'))
@@ -6402,7 +6454,7 @@ case prefix+'bcpcsticker':
 case prefix+'bcpcstick':
 case prefix+'bcpcstik':
 case prefix+'bcpcgif':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 anu = await skiuwers.chats.all().filter(v => v.jid.endsWith('s.whatsapp.net'))
@@ -6417,7 +6469,7 @@ reply('```SUKSES BROADCAST```')
 break
 
 case prefix+'bcpcvideo':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('.......')
@@ -6433,7 +6485,7 @@ reply('```SUKSES BROADCAST```')
 break
 
 case prefix+'bcpcimage':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply('```TEXT?```')
@@ -6455,7 +6507,7 @@ reply('```SUKSES BROADCAST```')
 break
 
 case prefix+ 'on':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 offline = false
@@ -6463,7 +6515,7 @@ reply(' ```ANDA TELAH ONLINE``` ')
 break
  
 case prefix+ 'off':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 offline = true
@@ -6474,7 +6526,7 @@ reply(' ```ANDA TELAH OFFLINE``` ')
 break   
 
 case prefix+'out': 
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 setTimeout( () => {
@@ -6498,7 +6550,7 @@ skiuwers.groupLeave(id)
 break
 
 case prefix+ 'endgrup':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 setTimeout( () => {
@@ -6512,7 +6564,7 @@ reply('Wassalam')
 break
 
 case prefix+ 'public':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (banChats === false) return reply('```PUBLIC```')
@@ -6522,7 +6574,7 @@ reply(`「 *PUBLIC-MODE* 」`)
 break
 
 case prefix+ 'self':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (banChats === true) return reply('```SELF```')
@@ -6533,7 +6585,7 @@ reply(`「 *SELF-MODE* 」`)
 break
 
 case prefix+ 'setnamabot':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply(`Kirim perintah ${prefix}setnamabot <query>\n\nContoh : ${prefix}setnamabot skiuwers`)
@@ -6544,7 +6596,7 @@ skiuwers.updateProfileName(q)
 break
 
 case prefix+ 'setbiobot':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply(`Kirim perintah ${prefix}setbiobot <query>\n\nContoh : ${prefix}setbiobot skiuwers`)
@@ -6555,7 +6607,7 @@ skiuwers.setStatus(q)
 break
 
 case prefix+ 'setppbot':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (!isQuotedImage) return reply(`Kirim gambar dengan caption ${prefix}setppbot atau tag gambar yang sudah dikirim`)
@@ -6566,7 +6618,7 @@ reply('```SUKSES```')
 break
 
 case prefix+ 'setreply':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (!q) return reply(`*Penggunaan :* ${prefix}setreply ItsMeArip`)
@@ -6575,7 +6627,7 @@ reply(`Succes Mengganti Conversation Fake : ${fake}`)
 break
 
 case prefix+ 'setlimit':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 limitCount = q
@@ -6583,7 +6635,7 @@ reply(`Succes Mengganti Limit : ${q}`)
 break
 
 case prefix+ 'setprefix':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (args.length < 1) return reply(`*Penggunaan :*\n • ${prefix}setprefix multi\n • ${prefix}setprefix nopref\n • ${prefix}setprefix #`)
@@ -6612,7 +6664,7 @@ break
 
 case prefix+ 'setthumb': 
 case prefix+ 'setthumbnail':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 boij = JSON.parse(JSON.stringify(rip).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
@@ -6626,7 +6678,7 @@ break
 case prefix+ 'setfake': 
 case prefix+ 'setfakeimg': 
 case prefix+ 'setfakeimage':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 boij = JSON.parse(JSON.stringify(rip).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
@@ -6638,7 +6690,7 @@ reply(`Sukses`)
 break
 
 case prefix+ 'join':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 try {
@@ -6655,7 +6707,7 @@ reply('```LINK ERROR [ ! ]```')
 break
 
 case prefix+ 'term':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 if (!q) return reply(mess.wrongFormat)
@@ -6669,7 +6721,7 @@ break
 
 case prefix+ 'return':
 case prefix+ 'cek':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 return skiuwers.sendMessage(from, JSON.stringify(eval(args.join(' '))), text, { quoted: rip})
@@ -6680,7 +6732,7 @@ break
 */
 
 case prefix+ 'daftar': case prefix+ 'verify':{
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (isRegistered) return reply('KAMU SUDAH MELAKUKAN VERIFIKASI')
 const serialUser = createSerial(20)
 veri = sender
@@ -6709,9 +6761,8 @@ break
 */
 
 case prefix+ 'mutualan':
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
-if (isLimit(sender, isPremium, isOwner, limitCount, limit)) return reply(mess.limit)
 if (isGroup) return reply(mess.only.private)
 anugnumb = getRegisteredRandomId(_registered).replace('@s.whatsapp.net', '')
 teks = ` 
@@ -6930,7 +6981,7 @@ skiuwers.sendMessage(from, 'Pertanyaan : Apakah ' + q + '\n\nJawaban : ' + kah, 
 // EVAL || FROM END
 */
 if (budy.startsWith('$')){
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 qur = budy.slice(2)
@@ -6942,7 +6993,7 @@ reply(stdout)
 })
 }
 if (budy.startsWith('x')){
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 try {
@@ -6961,7 +7012,7 @@ reply(`${emror}`)
 }}
 if (budy.startsWith('>')){
 try {
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 return skiuwers.sendMessage(from, JSON.stringify(eval(budy.slice(2)),null,'\t'),text, {quoted: rip})
@@ -6971,7 +7022,7 @@ reply(e)
 }
 }
 if (budy.startsWith('=>')){
-if (isBanned) return reply(mess.only.banned)
+if (isBanned) return reply(mess.banned)
 if (!rip.key.fromMe && !isRegistered) return verify(altar)
 if (!isOwner && !isCreator && !rip.key.fromMe) return reply(mess.only.owner)
 var konsol = budy.slice(3)
