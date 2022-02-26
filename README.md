@@ -19,7 +19,7 @@
 > pkg install nodejs
 > pkg install ffmpeg
 > pkg install mc
-> git clone https://github.com/ItsMeArip/rip
+> git clone https://github.com/ItsMeArip/skiuwers
 > npm install
 > npm start
 
